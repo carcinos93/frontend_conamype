@@ -1,0 +1,82 @@
+<app-header (OnBtnAtras)="bntAnterior($event)"></app-header>
+<app-audio></app-audio>
+<div class="container mt-5">
+    <form role="form" (ngSubmit)="registro()" [formGroup]="formulario" id="formulario">
+        <div class="input-group form-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+            </div>
+            <input type="text" autocomplete="off" formControlName="CorreoVisitante" class="form-control" placeholder="Correo visitante" [class.is-invalid]="controlValido('CorreoVisitante')">
+            <small class="text-danger w-100 d-block" *ngIf="controlValido('CorreoVisitante')">
+               Correo electrónico es requerido
+            </small>
+        </div>
+        <div class="input-group form-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-user"></i></span>
+            </div>
+            <input type="text" autocomplete="off" formControlName="Nombres" class="form-control" placeholder="Nombres" [class.is-invalid]="controlValido('Nombres')">
+            <small class="text-danger w-100 d-block" *ngIf="controlValido('Nombres')">
+                Nombres es requerido 
+             </small>
+        </div>
+        <div class="input-group form-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-user"></i></span>
+            </div>
+            <input type="text" autocomplete="off" formControlName="Apellidos" class="form-control" placeholder="Apellidos" [class.is-invalid]="controlValido('Apellidos')">
+            <small class="text-danger w-100 d-block" *ngIf="controlValido('Apellidos')">
+                Apellidos es requerido 
+             </small>
+        </div>
+        <div class="input-group form-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-key"></i></span>
+            </div>
+            <input type="password" formControlName="Password" class="form-control" placeholder="Contraseña" value="">
+            <small class="text-danger w-100 d-block" *ngIf="controlValido('Password')" [class.is-invalid]="controlValido('Apellidos')">
+                Contraseña es requerida
+             </small>
+        </div>
+        <div class="input-group form-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-key"></i></span>
+            </div>
+            <input type="password" formControlName="RepetirPassword" class="form-control" placeholder="Repetir contraseña" [class.is-invalid]="passValido">
+            <small class="text-danger w-100 d-block" *ngIf="passValido">
+                Contraseña no coincide
+             </small>
+        </div>
+        <div class="input-group form-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-user"></i></span>
+            </div>
+            <select type="texto" formControlName="Genero" class="form-control" [class.is-invalid]="controlValido('Genero')">
+                <option value="HOMBRE">Hombre</option>
+                <option value="MUJER">Mujer</option>
+            </select>
+            <small class="text-danger w-100 d-block" *ngIf="controlValido('Genero')">
+                Seleccione una opción
+             </small>
+        </div>
+        <div class="input-group form-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+            </div>
+            <input type="text" autocomplete="off" formControlName="Edad" class="form-control" placeholder="Edad" [class.is-invalid]="controlValido('Edad')">
+            <small class="text-danger w-100 d-block" *ngIf="controlValido('Edad')">
+                Edad es requerida
+             </small>
+        </div>
+        <div class="input-group form-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-university"></i></span>
+            </div>
+            <input type="text" autocomplete="off" formControlName="Empresa" class="form-control" placeholder="Empresa" [class.is-invalid]="controlValido('Empresa')">
+            <small class="text-danger w-100 d-block" *ngIf="controlValido('Empresa')">
+                Empresa es requerida
+             </small>
+        </div>
+        <button type="submit" class="btn btn-primary">Registrar</button>
+    </form>
+</div>

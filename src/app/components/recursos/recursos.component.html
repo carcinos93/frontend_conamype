@@ -1,0 +1,85 @@
+<div class="container" [ngSwitch]="IdRecurso">
+    <ng-container *ngSwitchCase="tipoRecurso.PRODUCTOS_SERVICIOS">
+        <div class="row mx-auto mb-2 w-100 align-items-center" style="background-color: #2323231a" *ngFor="let recurso of recursos; let i=index">
+            <div class="w-100 text-left">
+                <div class="d-inline">
+                    <img src='{{ recurso.Objeto != null ? recurso.Objeto : recurso.Link }}' class='img-thumbnail w-25' />
+                </div>
+
+                <div class="ml-2 d-inline">
+                    <span class="text-break">
+                            {{ recurso.Nombre_Recurso_Especifico }}
+                        </span>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="tipoRecurso.VIDEOS">
+        <div class="row mx-auto w-100">
+            <div *ngFor="let recurso of recursos; let i=index" class="col-4 text-center">
+                <a style="color: #04235b;" target='_blank' href='{{ recurso.Link }}'> <i class="fa fa-video-camera fa-3x" aria-hidden="true"></i> </a>
+                <div class="w-100">
+                    {{ recurso.Nombre_Recurso_Especifico }}
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="tipoRecurso.DOCUMENTOS">
+        <div class="row mx-auto w-100">
+            <div *ngFor="let recurso of recursos; let i=index" class="col-4 text-center">
+                <a style="color: #04235b;" target='_blank' href='{{ recurso.Link }}'> <i class="fa fa-file-archive-o fa-3x" aria-hidden="true"></i> </a>
+                <div class="w-100">
+                    {{ recurso.Nombre_Recurso_Especifico }}
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="tipoRecurso.VINCULOS_INTERES">
+        <div class="row mx-auto w-100">
+            <div *ngFor="let recurso of recursos; let i=index" class="col-4 text-center">
+                <a style="color: #04235b;" target='_blank' href='{{ recurso.Link }}'> <i class="fa fa-link fa-3x" aria-hidden="true"></i> </a>
+                <div class="w-100">
+                    {{ recurso.Nombre_Recurso_Especifico }}
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="tipoRecurso.BANNERS">
+        <div class="row mb-2 mx-auto w-100 align-items-center" style="background-color: #2323231a" *ngFor="let recurso of recursos; let i=index">
+            <div class="w-50 text-center">
+                <img src='{{ recurso.Objeto != null ? recurso.Objeto : recurso.Link }}' class='img-thumbnail w-50' />
+                <br/>
+                <a href='{{ recurso.Objeto != null ? recurso.Objeto : recurso.Link }}' target="_blank">
+                    <i class="fa fa-download fa-2x" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div class="w-50 text-left">
+                <div>
+                    <span class="text-break">
+                            {{ recurso.Nombre_Recurso_Especifico }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="tipoRecurso.AFICHES">
+        <div class="row mx-auto mb-2 w-100 align-items-center" style="background-color: #2323231a" *ngFor="let recurso of recursos; let i=index">
+            <div class="w-50 text-center">
+                <img src='{{ recurso.Objeto != null ? recurso.Objeto : recurso.Link }}' class='img-thumbnail w-50' />
+                <br/>
+                <a href='{{ recurso.Objeto != null ? recurso.Objeto : recurso.Link }}' target="_blank">
+                    <i class="fa fa-download fa-2x" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div class="w-50 text-left">
+                <div>
+                    <span class="text-break">
+                            {{ recurso.Nombre_Recurso_Especifico }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>

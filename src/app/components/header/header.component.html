@@ -1,0 +1,25 @@
+<nav *ngIf="validarRuta()" class="navbar navbar-expand-lg navbar-light fixed-top py-3 bg-light position-relative" id="mainNav">
+    <div class="container p-0">
+        <!--<app-button (OnBtnClick)="atras($event)" [btnConfig]="{ tipo : 'anterior', classes: [  ],  styles: { 'display' : 'block' } }"></app-button>-->
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="alert('En construccion'); return false;" href="#">¿QUIENES SOMOS?</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="alert('En construccion'); return false;" href="#" href="#">SERVICIOS</a></li>
+                <li class="nav-item dropdown" *ngIf="lsService.isAuthenticated()">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="nav-label">SALAS</span><span class="caret"></span></a>
+                    <ul class="dropdown-menu" style="white-space: nowrap;" aria-labelledby="navbarDropdown">
+                        <li><a class="nav-link js-scroll-trigger" [routerLink]="['/recepcion']">Recepción</a></li>
+                        <li><a class="nav-link js-scroll-trigger" [routerLink]="['/directorio']">Directorio empresarial</a></li>
+                        <li><a class="nav-link js-scroll-trigger" [routerLink]="['/anfiteatro']">Anfiteatro</a></li>
+                        <li><a class="nav-link js-scroll-trigger" [routerLink]="['/rueda-negocios']">Rueda de Negocios</a></li>
+                        <!--<li><a class="nav-link js-scroll-trigger" [routerLink]="['/inicio-alterno']"> Pagina de incio (alterna) </a></li>-->
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="alert('En construccion'); return false;" href="#" href="#">CONTACTENOS</a></li>
+                <li class="nav-item" *ngIf="lsService.isAuthenticated()"><span class="nav-link js-scroll-trigger" (click)="logout()">SALIR</span></li>
+                <!--<li class="nav-item" *ngIf="!lsService.isAuthenticated()"><a class="nav-link js-scroll-trigger" href="#">Entrada </a></li>-->
+            </ul>
+        </div>
+    </div>
+</nav>

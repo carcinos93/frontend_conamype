@@ -1,0 +1,50 @@
+<div class="position-relative mx-auto h-100 canvas-unity">
+    <div class="h-100 d-flex w-100">
+        <div class="row no-gutters align-content-center">
+            <div class="col-12">
+                <div class="position-relative w-100">
+                    <app-canvas [autoWidth]="false" (thenEvent)="canvasCargado($event)" (clickEvent)="redirect()" [unityObjeto]="appConfig.unityObjeto.fachada"></app-canvas>
+                    <div id="btnEntrar" class="position-absolute w-100 text-center hidden" style="bottom: 5%;left:0">
+                        <img [routerLink]="['/recepcion']" style="width: 9%;height:auto" src="./assets/img/entrar.png" class="img-scale-animation mx-auto cursor-pointer" alt="">
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-2 mx-auto">
+                        <div class="row no-gutters">
+                            <div class="col-3">
+                                <a [href]="appConfig.redes.facebook" target="_blank">
+                                    <img src="./assets/img/botones_fb.png" width="75%" class="img-fluid" alt="">
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a [href]="appConfig.redes.whatapp" target="_blank">
+                                    <img src="./assets/img/botones_whatsapp.png" width="75%" class="img-fluid" alt="">
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a [href]="appConfig.redes.twitter" target="_blank">
+                                    <img src="./assets/img/botones_tw.png" width="75%" class="img-fluid" alt="">
+                                </a>
+                            </div>
+                            <div class="col-3">
+                                <a [href]="appConfig.redes.instagram" target="_blank">
+                                    <img src="./assets/img/botones_insta.png" width="75%" class="img-fluid" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-12">
+                        <p style="font-family: 'Fira Sans';color: #3786c6" class="font-weight-bold text-center">CONAMYPE / 2021 / EL SALVADOR</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <app-audio></app-audio>
+</div>

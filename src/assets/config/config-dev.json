@@ -1,0 +1,24 @@
+{
+    "pabellon": {
+        "registrosPorPagina": "9"
+    },
+    "participante": {
+        "registrosPorPagina": "15"
+    },
+    "urlChat": "http://72.167.226.188/~oqmdev/oqmchat/public/?usuario={usuario}&canal={empresa}",
+    "habilitarSonido": false,
+    "redes": {
+        "facebook": "https://www.facebook.com/conamype.sv/",
+        "twitter": "https://twitter.com/CONAMYPESV",
+        "instagram": "https://www.instagram.com/conamypesv/",
+        "whatapp": "https://wa.me/50370747074"
+    },
+    "unityObjetos": {
+        "pabellon": "pabellon",
+        "recepcion": "recepcion",
+        "anfiteatro": "anfiteatro",
+        "ruedaNegocios": "rueda",
+        "fachada": "fachada"
+    }
+
+}

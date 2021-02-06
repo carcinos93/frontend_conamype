@@ -1,0 +1,13 @@
+<ng-container *ngTemplateOutlet="btnConfig['tipo'] == 'siguiente' ? siguiente : anterior">
+
+</ng-container>
+
+<ng-template #siguiente>
+    <a #componentButton id="btnComponent" href="#" class="botones siguiente" [routerLink]="btnConfig.routerLink ? btnConfig.routerLink : []" [ngClass]="btnConfig.classes" [ngStyle]="btnConfig.styles" (click)="onBtnClickEvent($event)">
+    </a>
+</ng-template>
+
+<ng-template #anterior>
+    <a #componentButton id="btnComponent" href="#" class="botones anterior" [routerLink]="btnConfig.routerLink ? btnConfig.routerLink : []" [ngClass]="btnConfig.classes" [ngStyle]="btnConfig.styles" (click)="onBtnClickEvent($event)">
+    </a>
+</ng-template>

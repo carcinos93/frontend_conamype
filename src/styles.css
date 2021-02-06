@@ -1,0 +1,272 @@
+/* You can add global styles to this file, and also import other style files */
+
+@font-face {
+    font-family: 'Lato';
+    src: url('./assets/fonts/Lato-Black.ttf') format('truetype');
+}
+
+.hidden {
+    visibility: hidden !important;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+
+/** para evitar que angular agregue overflow hidden**/
+
+body {
+    overflow: auto !important;
+    padding: 0 !important;
+}
+
+html {
+    overflow: auto !important;
+}
+
+.escalaGris img {
+    filter: grayscale(1);
+}
+
+.escalaGris img:hover {
+    filter: grayscale(0);
+}
+
+.blur {
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}
+
+.alerta-terminado {
+    background-color: rgba(105, 105, 105, 0.3) !important;
+}
+
+#video-background {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.fullscreen .modal-dialog {
+    width: 50% !important;
+    height: 50% !important;
+    /*margin: 0 !important;*/
+    padding: 0 !important;
+    max-width: 50% !important;
+}
+
+.fullscren .modal-content {
+    height: auto !important;
+    min-height: 50% !important;
+    border-radius: 0 !important;
+    max-width: 50% !important;
+}
+
+@media (min-width:1024px) {
+    .botones {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+@media (min-width:1366px) {
+    .botones {
+        width: 75px;
+        height: 75px;
+    }
+}
+
+@media (min-width:1680px) {
+    .botones {
+        width: 80px;
+        height: 80px;
+        border: none;
+    }
+}
+
+.botones.anterior {
+    background: url('./assets/img/botones_botonatras.png') no-repeat;
+    background-size: contain;
+}
+
+
+/*.botones.anterior:hover {
+    background: url('assets/img/Iconos anterior_anterior texto.png') no-repeat;
+    background-size: contain;
+}*/
+
+.botones.siguiente {
+    background: url('./assets/img/botones_boton siguiente.png') no-repeat;
+    background-size: contain;
+}
+
+.icono-flecha {
+    background: url('./assets/img/icono-flecha.png') no-repeat;
+    background-size: contain;
+    width: 35px;
+    height: 22px;
+}
+
+.icono-flecha.abajo {
+    transform: rotate(180deg);
+}
+
+
+/*.botones.siguiente:hover {
+    transition: ease-in;
+    animation: linear;
+    animation-duration: 1.5s;
+    background: url('assets/img/Iconos anterior_siguiente texto.png') no-repeat;
+    background-size: contain;
+}*/
+
+.botones.siguiente.posDerecha {
+    z-index: 2000;
+    top: 50%;
+    position: absolute;
+    right: 0%
+}
+
+.botones.anterior.posIzquierda {
+    z-index: 2000;
+    top: 50%;
+    position: absolute;
+    left: 0%
+}
+
+#mainNav .nav-link {
+    font-size: 1.2rem !important;
+}
+
+.image_component img {
+    opacity: 1;
+    display: block;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.image_component div.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+}
+
+.image_component:hover img {
+    opacity: 0.3;
+}
+
+.image_component:hover div.middle {
+    opacity: 1;
+}
+
+.image_component div.text {
+    color: #050180;
+    font-size: 14px;
+    padding: 16px 32px;
+    font-weight: bold;
+    font-family: 'Lato';
+    width: 100%;
+}
+
+
+/**efecto contrario**/
+
+.image_component.invert div.middle {
+    opacity: 1;
+}
+
+.image_component.invert img {
+    opacity: 0;
+}
+
+.image_component.invert:hover img {
+    opacity: 1;
+}
+
+.image_component.invert:hover div.middle {
+    opacity: 0;
+}
+
+.opacity-4 {
+    opacity: 0.4;
+}
+
+.opacity-4:hover {
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.bg-white {
+    background-color: white;
+}
+
+.bg-white-transparent {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.img-scale-animation {
+    animation: scaleAnimation 1.5s infinite;
+    -moz-animation: scaleAnimation 1.5s infinite;
+    -webkit-animation: scaleAnimation 1.5s infinite;
+    -o-animation: scaleAnimation 1.5s infinite;
+}
+
+.img-scale-animation-5 {
+    animation: scaleAnimation 1.5s 5;
+    -moz-animation: scaleAnimation 1.5s 5;
+    -webkit-animation: scaleAnimation 1.5s 5;
+    -o-animation: scaleAnimation 1.5s 5;
+}
+
+@keyframes scaleAnimation {
+    from {
+        transform: scale(0.5);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.canvas-unity {
+    width: 90%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+@media (max-width:1440px) {
+    .canvas-unity {
+        width: 87%;
+    }
+}
+
+@media (max-width:1366px) {
+    .canvas-unity {
+        width: 87%;
+    }
+}
+
+@media (max-width:1024px) {
+    .canvas-unity {
+        width: 85%;
+    }
+}
+
+.col-2_4 {
+    flex: 0 0 20%;
+    max-width: 20%;
+}
+
+
+/****/

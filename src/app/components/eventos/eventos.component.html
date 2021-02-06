@@ -1,0 +1,94 @@
+<app-audio></app-audio>
+<div class="position-relative canvas-unity mx-auto">
+
+    <app-canvas [autoWidth]="false" (clickEvent)="eventoClick($event)" [unityObjeto]="tipo == 'ANFITEATRO' ? appConfig.unityObjeto.anfiteatro : appConfig.unityObjeto.ruedaNegocios " (thenEvent)="canvasCargado($event)"></app-canvas>
+    <app-button (OnBtnClick)="bntAnterior($event)" [btnConfig]="{ tipo: 'anterior', classes : 'posIzquierda' }"></app-button>
+    <div id="eventos" class="position-absolute hidden h-100" style="top:0; left:0; right:0;">
+        <div class="d-flex h-100 position-relative">
+            <div class="w-100">
+                <div class="row h-100 w-100 no-gutters align-content-center">
+                    <div [@slideInOut]="animacion_contenedor" (@slideInOut.done)="animacionContenedor($event)" class="col-10 mx-auto bg-light marco position-relative">
+                        <div [@slideInOut]="animacion_estado" (@slideInOut.done)="animacionVideo($event)" id="video-contenedor">
+                        </div>
+                        <div id="contenido-anfiteatro">
+                            <button (click)="cerrar()" style="background-image: url('./assets/img/botones_cerrar.png');background-size: contain;width: 40px;height:40px;" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                            <div class="text-center w-100 p-4">
+                                <h2> {{ titulo_tabla }}</h2>
+                            </div>
+                            <table class="table" border="1" style="background-color: #f6fafb; border-color: rgb(155, 151, 151);">
+                                <thead>
+                                    <th>Fecha</th>
+                                    <th>Hora</th>
+                                    <th>{{ titulo }}</th>
+                                    <th>Organizador</th>
+                                    <th></th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let evento of eventos; let i=index" class="animated fadeInUp" [ngClass]="{ 'alerta-terminado' : evento.Status == 'terminado' && tipo == 'ANFITEATRO' }">
+                                        <td> {{ evento.Fecha_Inicio_Evento | date:'dd/MM/yyyy' }} </td>
+                                        <td> {{ evento.Fecha_Inicio_Evento | date:'hh:mm a' }} </td>
+                                        <td (click)="mostrarInformacion(evento)"> {{ evento.Nombre_Evento }} </td>
+                                        <td> {{ evento.Organizador }} </td>
+                                        <td>
+                                            <i [ngClass]="{ 
+                                                                'fa-youtube-play' : evento.Status == 'terminado' && !SringisEmpty(evento.Vinculo_Video), 
+                                                                'text-danger' : evento.Status == 'terminado' && !SringisEmpty(evento.Vinculo_Video), 
+                                                                'fa-users' :  evento.Status != 'terminado' && !SringisEmpty(evento.Vinculo_Inscripcion),
+                                                                'text-primary' :  evento.Status != 'terminado' && !SringisEmpty(evento.Vinculo_Inscripcion)
+                                                            }" (click)="mostrarEvento( evento)" class="fa fa-2x text-hide" aria-hidden="true"></i> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="animacion_estado == 'out'" class="row w-100 mt-1">
+                    <div class="col-12 text-center ">
+                        <button (click)="RegresarEventos()" type="button" class="btn btn-primary">Regresar a eventos</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="modal" id="infoEventoModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" style="min-width: 700px;" role="document">
+        <div class="modal-content" style="height:100%;width: 100%;">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+
+                <h5 class="title">
+                    {{ eventoSeleccionado.Nombre_Evento }}
+                </h5>
+                <p class="small font-italic text-muted">Publicado en: {{ eventoSeleccionado.Fecha_Creacion |date:'dd/MM/yyyy hh:mm aa' }} </p>
+
+                <p>Inicio evento: <span class="font-weight-bold">{{ eventoSeleccionado.Fecha_Inicio_Evento |date:'dd/MM/yyyy hh:mm aa' }}</span> </p>
+                <p>Fin evento: <span class="font-weight-bold"> {{ eventoSeleccionado.Fecha_Fin_Evento |date:'dd/MM/yyyy hh:mm aa' }}</span> </p>
+                <p> Organizado por: <span class="font-weight-bold"> {{ eventoSeleccionado.Organizador }} </span> </p>
+                <img src="{{ eventoSeleccionado.Imagen_Evento }}" class="img-fluid" alt="">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fullscreen" tabindex="-1" role="dialog">
+    <div class="modal-dialog" style="width: 98%; height: 92%;;padding: 0;" role="document">
+        <div class="modal-content" style="height:100%;width: 100%;">
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>

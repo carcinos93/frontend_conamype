@@ -1,0 +1,107 @@
+<app-header></app-header>
+<app-audio></app-audio>
+<div class="position-relative canvas-unity mx-auto">
+
+    <app-canvas [autoWidth]="false" (thenEvent)="canvasCargado($event)"></app-canvas>
+    <app-button (OnBtnClick)="bntAnterior($event)" [btnConfig]="{ tipo: 'anterior', classes : 'posIzquierda' }"></app-button>
+    <div class="position-absolute" style="bottom: 0; left: 0; right: 0;">
+
+        <div class="container-fluid">
+            <div class="row justify-content-md-center no-gutters m-0">
+                <div [ngClass]="{ 'col-6' : 6 >= stand.data.length, 'col-9' : stand.data.length > 6  }" class="bg-white-transparent p-0 mx-auto" style="border-radius: 33px 33px 0 0;">
+
+                    <div class="row">
+                        <div (click)="collapse('recurso', 'informacion-estado')" class="col-6 mx-auto text-center">
+                            <div class="icono-flecha abajo mb-1 mt-1 mx-auto" id="informacion-estado"></div>
+                            <p class="p-0 m-0 font-weight-bold h4">INFORMACIÓN</p>
+                            <!-- <img (click)="collapse('ferias')" src="./assets/img/caja de ferias.png" class="img-fluid" alt="">-->
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center bg-white-transparent no-gutters collapse" id="recurso">
+                        <div [ngClass]="{ 'col-2' : 6 >= stand.data.length  }" [ngStyle]="stand.data.length > 6 && { 'width' : (100 / stand.data.length).toString() + '%'   } " class="m-0 text-center" *ngFor="let valor of stand.data; let i = index">
+                            <div class="mt-1" id="items_en_uso">
+                                <app-imagen-button (OnBtnClick)="mostrarVentana('modalParticipante' + i, valor)" [btnConfig]="{text: valor.Nombre_Recurso, 
+                                img: { src: valor.Logo, class: 'img-fluid' } }">
+                                </app-imagen-button>
+                                <!-- <a href="#" (click)="mostrarVentana('modalParticipante' + i, valor)" data-toggle="modal" id="" class="modal-recurso" data-target="#edit-modal">
+                                    <div><img data-logo="{{ valor.IdRecurso }}" [src]="valor.Logo" class="pl-2"></div>
+                                    {{ valor.Nombre_Recurso }}
+                                </a>-->
+                                <div class="d-none" id="modalParticipante{{ i }}">
+                                    <div *ngIf="valor.IdRecurso == '1'">
+                                        <ng-template let-item let-i="index" ngFor [ngForOf]="stand.perfil">
+                                            <table class="table table-bordered table-hover" border="1">
+                                                <tr>
+                                                    <th> Empresa: </th>
+                                                    <td> {{ item.Nombre_Participante }} </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th>Teléfono:</th>
+                                                    <td>{{ item.Telefono_Contacto }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Perfil</th>
+                                                    <td>
+                                                        <span class="text-break">
+                                                            {{ item.Perfil }}
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center" colspan="2">
+                                                        <a target="_blank" href="{{ item.SitioWeb }}"> <i class="fa fa-internet-explorer fa-2x" aria-hidden="true"></i> </a>
+
+                                                    </td>
+
+                                                </tr>
+                                            </table>
+                                        </ng-template>
+                                    </div>
+                                    <div *ngIf="valor.IdRecurso !== '1'">
+
+                                        <div *ngIf="valor.IdRecurso == '6'" class="row">
+                                            <div *ngFor="let item of stand.redes; let i = index" class="col-4">
+                                                <a target='_blank' [href]='item.Link'>
+                                                    <img src="{{ item.Objeto }}" class="img-fluid">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="valor.recursos != [] && valor.IdRecurso != '6'">
+                                            <app-recursos [recursos]="valor.recursos" [IdRecurso]="valor.IdRecurso"></app-recursos>
+                                            <!-- FIN DE IF RECURSOS -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<hr class="divider my-3" />-->
+
+        </div>
+    </div>
+
+    <div id="edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="h-100 w-100 text-center" style="vertical-align: middle;">
+                        <img id="modal-imagen" class="img-fluid col-3" alt="">
+                        <span class="h4 modal-title" style="font-family: 'Lato';color: #04235b;">
+                        </span>
+                    </div>
+                    <button style="background-image: url('./assets/img/botones_cerrar.png');background-size: contain;width: 10px;height:10px;" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                </div>
+
+                <div id="modalBody" class="modal-body">
+
+                </div>
+                <!--- <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>-->
+            </div>
+        </div>
+    </div>

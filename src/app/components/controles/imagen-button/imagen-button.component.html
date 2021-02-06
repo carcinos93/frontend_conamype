@@ -1,0 +1,8 @@
+<div class="image_component cursor-pointer" style="position: relative;">
+    <a href="#" (click)="onBtnClickEvent($event)" [routerLink]="btnConfig.routeLink ?  btnConfig.routeLink : []">
+        <img class="{{ btnConfig.img.class }}" [src]="btnConfig.img.src" alt="Avatar" [ngStyle]="btnConfig.img.styles">
+        <div class="middle">
+            <div class="text"> {{ btnConfig.text }} </div>
+        </div>
+    </a>
+</div>
