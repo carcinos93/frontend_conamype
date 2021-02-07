@@ -13,16 +13,15 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "../../UniServer/www/frontend-conamype_prod",
+                        "outputPath": "../../UniServerZ/www/frontend-conamype_prod",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
-                        "aot": true,
+                        "aot": false,
                         "assets": [
                             "src/favicon.ico",
                             "src/assets",
-                            "src/fonts",
                             "src/unity-conf"
                         ],
                         "styles": [
@@ -30,11 +29,10 @@
                             "src/styles.css",
                             "src/css/app.css",
                             "src/css/animate.min.css",
-                            "src/css/fuentes.css",
                             "src/css/carousel.css",
                             "src/css/normalize.min.css",
                             "src/css/_styles.css",
-                            "src/css/font-awesome.min.css",
+                            "src/css/font-awesome.css",
                             "src/css/stylesheet.css"
                         ],
                         "scripts": [
@@ -50,6 +48,11 @@
                             "fileReplacements": [{
                                 "replace": "src/environments/environment.ts",
                                 "with": "src/environments/environment.prod.ts"
+                            }],
+                            "assets": [{
+                                "glob": "**/*",
+                                "input": "src/assets",
+                                "output": "./assets/"
                             }],
                             "optimization": true,
                             "outputHashing": "bundles",
