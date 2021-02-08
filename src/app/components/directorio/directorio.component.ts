@@ -8,7 +8,11 @@ import { ConamypeService } from 'src/app/services/conamype.service';
   templateUrl: './directorio.component.html',
   styles: [ "* { color: #223972 }",
   ".titulo {  font-family: 'Lato'; }",
-  ".participante {  font-family: 'Fira Sans'; }"
+  ".participante {  font-family: 'Fira Sans'; }",
+  ".directorio { max-height: 650px }",
+  "@media (max-width:1440px) { .directorio { max-height: 500px; }}",
+  "@media (max-width:1366px) { .directorio { max-height: 400px; }}",
+  "@media (max-width:1024px) { .directorio { max-height: 350px; }}"
   ]
 })
 export class DirectorioComponent implements OnInit {

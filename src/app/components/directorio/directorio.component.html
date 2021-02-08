@@ -1,27 +1,26 @@
 <app-header (OnBtnAtras)="bntAnterior($event)"></app-header>
 <app-audio></app-audio>
 
-<div class="mx-auto mt-5" style="width: 80%;">
+<div class="mx-auto mt-4" style="width: 80%;">
     <div class="mb-5" class="titulo">
         <span style="font-size: 2.1rem;">
             DIRECTORIO EMPRESARIAL
         </span>
 
     </div>
-    <div style="max-height: 500px; overflow-y: scroll; overflow-x: hidden;">
+    <div class="directorio" style="overflow-y: scroll; overflow-x: hidden;">
         <div class="text-center pl-2 pr-2" *ngFor="let item of directorioItems">
             <div class="w-100 h3 p-4 titulo m-0" style="background-color: #c0d1db;">
                 PABELLON {{ item.NombrePabellon | uppercase }}
             </div>
-            <div class="row no-gutters m-0">
+            <div class="row no-gutters m-0" style="font-size: 0.9rem;">
                 <div class="col-3 participante" [ngStyle]=" { 'border-right': ( (i + 1 ) % 4.0 > 0.0 ) ? '4px solid #c0d1db' : 'none'  } " *ngFor="let participante of item.Participantes; let i = index">
-                    <div class="w-100 mt-5 mb-5">
+                    <div class="w-100 mt-3 mb-3">
                         <img class="rounded-circle w-25" [src]="participante.Logo_Participante" alt="">
                     </div>
-                    <div class="w-100 text-wrap">
-                        <p>{{ participante.Nombre_Participante | uppercase }}</p>
-                        <p>CONTACTO: {{ participante.Nombre_Contacto }} <br>
-                            <a href="mailto:{{ participante.Correo_Electronico }}">{{ participante.Correo_Electronico }}</a>
+                    <div class="ml-2 w-100 text-break pr-1">
+                        <p class="text-center">{{ participante.Nombre_Participante | uppercase }}</p>
+                        <p class="text-left">CONTACTO: {{ participante.Nombre_Contacto }} <br> {{ participante.Correo_Electronico }}
                         </p>
                     </div>
                 </div>

@@ -12,10 +12,19 @@ export class AudioComponent implements OnInit {
     if (this.config.position == null) {
       this.config.position = "right";
     }
-
+  
    }
   @Input() config: any = {};
   ngOnInit(): void {
+    var audio = document.getElementById("audioBackground") as HTMLAudioElement;
+    var iconoMusica = $("#iconoMusica");
+    if (audio.paused) {
+      iconoMusica.removeClass("fa-volume-up");
+      iconoMusica.addClass("fa-volume-off");
+    } else {
+      iconoMusica.addClass("fa-volume-up");
+      iconoMusica.removeClass("fa-volume-off");
+    }
   }
 
   

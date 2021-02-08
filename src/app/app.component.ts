@@ -1,6 +1,7 @@
 import { animate, group, query, style, transition, trigger } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { AppConfig } from './services/app-config.service';
 
 @Component({
   selector: 'app-root',
@@ -39,11 +40,19 @@ group([
 
 ]) ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'frontend-conamype';
-  constructor() {
+  constructor(private appConfig: AppConfig) {
       
   }
+  ngOnInit(): void {
+    if (this.appConfig.habilitarSonido) {
+      var audio = document.getElementById("audioBackground") as HTMLAudioElement;
+      audio.play();
+    }
+  }
+
+
   prepareRoute(outlet: RouterOutlet) {
     return outlet.activatedRouteData['page'] || 'inicio';
     //return outlet
