@@ -88,7 +88,7 @@ export class CanvasComponent implements OnInit, AfterViewInit, OnDestroy  {
           } 
 
       }).then((unityInstance) => {
-          unityInstance.SendMessage('Main Camera','FocusCanvas', '0');
+          unityInstance.SendMessage('Codigo','FocusCanvas', '0');
           this._unityInstance = unityInstance;
           if (SendMessageUnity != null) {
             unityInstance.SendMessage(SendMessageUnity.objeto  , SendMessageUnity.funcionNombre,  SendMessageUnity.parametros );

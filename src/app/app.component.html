@@ -2,6 +2,9 @@
     <source  src="assets/audios/Broken - Patrick Patrikios.mp3"  type="audio/mp3">
     Your browser does not support the audio element.
 </audio>
-<div class="position-relative h-100" [@routeAnimations]="prepareRoute(outlet)">
+
+<div class="position-relative h-100 main" [@routeAnimations]="prepareRoute(outlet)">
     <router-outlet #outlet="outlet"></router-outlet>
+
 </div>
+<app-audio></app-audio>

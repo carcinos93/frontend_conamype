@@ -1,42 +1,51 @@
 import { animate, group, query, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostBinding  } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AppConfig } from './services/app-config.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+ styles: [ ],
   animations: [ trigger('routeAnimations', [
-    transition('* => *', [
-      query(':enter', [
-        style({ opacity: 0 })
-    ], { optional: true }
-),
-group([
-    query(':leave', [
-            animate(300, style({ opacity: 0 }))
-        ],
-        { optional: true }
-    ),
-    query(':enter', [
-            style({ opacity: 0 }),
-            animate(300, style({ opacity: 1 }))
-        ],
-        { optional: true }
-    )
-])
-     /* query(':enter, :leave', [
+    transition( '* => *', [
+
+      query(':enter', 
+          [
+              style({ opacity: 0 })
+          ], 
+          { optional: true }
+      ),
+
+      query(':leave', 
+          [
+              style({ opacity: 1 }),
+              animate('0.2s', style({ opacity: 0 }))
+          ], 
+          { optional: true }
+      ),
+
+      query(':enter', 
+          [
+              style({ opacity: 0 }),
+              animate('0.2s', style({ opacity: 1 }))
+          ], 
+          { optional: true }
+      )
+
+  ])
+    /*transition('* => *', [
+     query(':enter, :leave', [
         style({
           opacity: 0,
         }),
       ], { optional: true}),
   
       query(':leave', [
-        animate('1s', style({ opacity: 1 })),
+        animate('1.5s', style({ opacity: 1 })),
       ],  { optional: true })
-      */
-    ])
+    
+    ])*/
 
 ]) ]
 })
@@ -54,7 +63,8 @@ export class AppComponent implements OnInit {
 
 
   prepareRoute(outlet: RouterOutlet) {
-    return outlet.activatedRouteData['page'] || 'inicio';
+    return outlet.isActivated ?  outlet.activatedRouteData['page']  : 'inicio';
+   // return outlet.activatedRouteData['page'] || 'inicio';
     //return outlet
   }
 

@@ -17,8 +17,14 @@
         "pabellon": "pabellon",
         "recepcion": "recepcion",
         "anfiteatro": "anfiteatro",
-        "ruedaNegocios": "rueda",
+        "ruedaNegocios": "Rueda",
         "fachada": "fachada"
+    },
+    "servicios": {
+        "base": "http://72.167.226.188/~oqmdev/ws/",
+        "ruedaNegocios": "http://72.167.226.188/~oqmdev/ws/rueda_negocios.php",
+        "anfiteatro": "http://72.167.226.188/~oqmdev/ws/anfiteatro.php",
+        "pabellon": "http://72.167.226.188/~oqmdev/ws/pabellon_publicidad.php",
+        "recepcion": "http://72.167.226.188/~oqmdev/ws/centro_eventos.php?IdFeriasEventos=1"
     }
-
 }

@@ -26,6 +26,9 @@ export class AppConfig {
     return this.config.redes;
   }
 
+  get servicios() {
+    return this.config.servicios;
+  }
   get unityObjeto() {
     return this.config.unityObjetos;
   }
@@ -71,5 +74,12 @@ export interface Config
     anfiteatro: string,
     ruedaNegocios: string,
     fachada: string
+   },
+   servicios: { 
+    base: string,
+    ruedaNegocios: string,
+    anfiteatro: string,
+    pabellon: string,
+    recepcion: string
    }
 }

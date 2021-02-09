@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Evento } from 'src/app/models/evento.model';
 import { ConamypeService } from 'src/app/services/conamype.service';
+import { AppConfig } from '../../services/app-config.service';
 
 @Component({
   selector: 'app-rueda-negocios',
@@ -11,7 +12,7 @@ import { ConamypeService } from 'src/app/services/conamype.service';
 })
 export class RuedaNegociosComponent implements OnInit {
 
-  constructor(private conamypeService: ConamypeService, private route: Router) { }
+  constructor(private conamypeService: ConamypeService, private route: Router, public appConfig: AppConfig) { }
 
   ngOnInit(): void {
   }

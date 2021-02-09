@@ -1,5 +1,5 @@
 <app-header (OnBtnAtras)="bntAnterior($event)"></app-header>
-<app-eventos [url]="'http://72.167.226.188/~oqmdev/ws/rueda_negocios.php'" [tipo]="'RUEDA'"></app-eventos>
+<app-eventos [url]="appConfig.servicios.ruedaNegocios" [tipo]="'RUEDA'"></app-eventos>
 <!--<app-canvas (clickEvent)="eventoClick($event)" [unityObjeto]="'rueda'" (thenEvent)="canvasCargado($event)"></app-canvas>
 <div id="eventos" class="row h-100 align-content-center hidden">
     <div class="col-8 mx-auto bg-light">

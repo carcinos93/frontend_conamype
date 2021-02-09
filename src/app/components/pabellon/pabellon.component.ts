@@ -74,8 +74,8 @@ export class PabellonComponent implements OnInit {
   }
 
   canvasCargado(instance) {
-    instance.SendMessage('Canvas','ImagenDb', 'http://72.167.226.188/~oqmdev/ws/pabellon_publicidad.php');
-    instance.SendMessage('Canvas','FocusCanvas', '0');
+    instance.SendMessage('Codigo','ImagenDb', this.appConfig.servicios.pabellon);
+    instance.SendMessage('Codigo','FocusCanvas', '0');
     let idPabellon = this.activatedRoute.snapshot.paramMap.get('idPabellon');
     let idFeria = this.activatedRoute.snapshot.paramMap.get('idFeria');
 

@@ -1,10 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin } from 'rxjs';
-import { map, filter } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Directorio } from '../models/directorio.model';
 import { Evento } from '../models/evento.model';
-import { Recurso } from '../models/recurso.model';
 import { AppConfig } from './app-config.service';
 import { LocalStorageService } from './local-storage.service';
 
@@ -16,7 +15,7 @@ export class ConamypeService {
   urlService:string;
   isAuthenticate = false;
   constructor(private http: HttpClient, private lrService: LocalStorageService, private appConfig: AppConfig) { 
-    this.urlService ="http://72.167.226.188/~oqmdev/ws/";
+    this.urlService = this.appConfig.servicios.base;
   }
   ferias() {
     var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');

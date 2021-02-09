@@ -44,7 +44,7 @@ export class EventosComponent implements OnInit {
   eventos: Evento[] = [];
   eventoSeleccionado:  Evento = {} as Evento;
   canvasCargado(unityInstance) {
-    unityInstance.SendMessage('Canvas','ImagenDb', this.url);
+    unityInstance.SendMessage('Codigo','ImagenDb', this.url);
   }
   fechaFin: Date = new Date();
   eventoClick(event) { 

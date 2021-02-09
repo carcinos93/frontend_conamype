@@ -35,7 +35,7 @@ export class StandComponent implements OnInit {
         this.stand = data;
 
         if (data.valor2 != null) {
-           this.canvas.cargarUnity(data.valor2.Objeto3D, { objeto: 'Canvas', funcionNombre: 'ImagenDB', parametros:
+           this.canvas.cargarUnity(data.valor2.Objeto3D, { objeto: 'Codigo', funcionNombre: 'ImagenDB', parametros:
            `?IdEstand=${data.valor2.IdEstand}` });
         }
       });

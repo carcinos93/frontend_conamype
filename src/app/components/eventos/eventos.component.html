@@ -1,4 +1,3 @@
-<app-audio></app-audio>
 <div class="position-relative canvas-unity mx-auto">
 
     <app-canvas [autoWidth]="false" (clickEvent)="eventoClick($event)" [unityObjeto]="tipo == 'ANFITEATRO' ? appConfig.unityObjeto.anfiteatro : appConfig.unityObjeto.ruedaNegocios " (thenEvent)="canvasCargado($event)"></app-canvas>

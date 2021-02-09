@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { CommunicationService } from 'src/app/services/communication.service';
 import { ConamypeService } from 'src/app/services/conamype.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { LoginComponent } from '../login/login.component';
@@ -45,7 +44,7 @@ export class RecepcionComponent implements OnInit, AfterViewInit {
 
   }
   canvasCargado(unityInstance) {
-    unityInstance.SendMessage('Main Camera','ImagenDb', 'http://72.167.226.188/~oqmdev/ws/centro_eventos.php?IdFeriasEventos=1');
+    unityInstance.SendMessage('Codigo','ImagenDb', this.appConfig.servicios.recepcion);
   }
 
   collapse(id: string, idIconoEstado) {
