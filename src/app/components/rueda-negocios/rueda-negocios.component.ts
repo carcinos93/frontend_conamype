@@ -22,26 +22,6 @@ export class RuedaNegociosComponent implements OnInit {
   canvasCargado(unityInstance) {
  
   }
-
-  eventoClick(event) {
-    this.conamypeService.eventosRuedaNegocios( "'2020-01-01'", "'2021-01-31'" ).subscribe((data) => {
-      console.log(data);  
-      this.eventos = data;
-        $("#eventos").removeClass('hidden');
-    });
-  }
-  
-  mostrarInformacion(evento: Evento) {
-    this.eventoSeleccionado = evento;
-    $("#infoEventoModal")['modal']();
-  }
-  mostrarVentanaVideo(vinculo: string) {
-      let html = `<iframe style="width:100%;height:100%" src="${vinculo}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
-      $("#videoModal .modal-body").html( html );
-      $("#videoModal .modal-title").html( "Video" );
-      $("#videoModal")['modal']();
-    
-  }
   bntAnterior(event) {
     this.route.navigate(['/recepcion']);
   }

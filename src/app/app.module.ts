@@ -17,7 +17,6 @@ import { AnfiteatroComponent } from './components/anfiteatro/anfiteatro.componen
 import { RuedaNegociosComponent } from './components/rueda-negocios/rueda-negocios.component';
 import { ButtonComponent } from './components/controles/button/button.component';
 import { ImagenButtonComponent } from './components/controles/imagen-button/imagen-button.component';
-import { InicioAlternoComponent } from './components/inicio-alterno/inicio-alterno.component';
 import { DirectorioComponent } from './components/directorio/directorio.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { EventosComponent } from './components/eventos/eventos.component';
@@ -27,6 +26,9 @@ import { PaginacionComponent } from './components/controles/paginacion/paginacio
 import { AppConfig } from './services/app-config.service';
 import { BusquedaComponent } from './components/controles/busqueda/busqueda.component';
 import { RecursosComponent } from './components/recursos/recursos.component';
+import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
+import { ContactenosComponent } from './components/contactenos/contactenos.component';
+import { QuienesSomosComponent } from './components/quienes-somos/quienes-somos.component';
 const appInitializerFn = (appConfig: AppConfig) => {
   return () => {
     return appConfig.loadAppConfig();
@@ -47,7 +49,6 @@ const appInitializerFn = (appConfig: AppConfig) => {
     RuedaNegociosComponent,
     ButtonComponent,
     ImagenButtonComponent,
-    InicioAlternoComponent,
     DirectorioComponent,
     RegistroComponent,
     EventosComponent,
@@ -55,7 +56,10 @@ const appInitializerFn = (appConfig: AppConfig) => {
     BienvenidoComponent,
     PaginacionComponent,
     BusquedaComponent,
-    RecursosComponent
+    RecursosComponent,
+    SanitizeHtmlPipe,
+    ContactenosComponent,
+    QuienesSomosComponent
   ],
   imports: [
     BrowserModule,

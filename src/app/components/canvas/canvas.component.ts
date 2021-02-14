@@ -14,7 +14,6 @@ export class CanvasComponent implements OnInit, AfterViewInit, OnDestroy  {
   @Input() unityObjeto: string = '';
   @Input() style: string = '';
   @Input() parametros: string = '';
-  @Input() ratio: number = 0.59;
   @Input() autoWidth: boolean = true;
   @Output() thenEvent = new EventEmitter();
   @Output() clickEvent = new EventEmitter();

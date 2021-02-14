@@ -42,6 +42,10 @@ html {
     background-color: rgba(105, 105, 105, 0.3) !important;
 }
 
+.page-link {
+    background-color: none !important;
+}
+
 #video-background {
     position: fixed;
     width: 100%;
@@ -160,7 +164,7 @@ html {
     -ms-transform: translate(-50%, -50%);
     margin: 0 auto;
     text-align: center;
-    width: 74%;
+    width: 86%;
     border: 1px solid transparent;
 }
 
@@ -175,10 +179,9 @@ html {
 .image_component div.text {
     color: #050180;
     font-size: 0.85rem;
-    /*padding: 16px 32px;*/
-    font-weight: bold;
-    font-family: 'Lato';
+    font-family: 'Fira Sans';
     width: 100%;
+    font-weight: 600;
 }
 
 
@@ -267,6 +270,10 @@ html {
 .col-2_4 {
     flex: 0 0 20%;
     max-width: 20%;
+}
+
+.text-conamype {
+    color: #3d84c6;
 }
 
 

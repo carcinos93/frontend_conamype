@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  unityVersion: "1.0.12"
+  unityVersion: "1.0.13"
 };
 
 /*

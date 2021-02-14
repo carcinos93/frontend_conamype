@@ -2,6 +2,7 @@ import { animate, group, query, style, transition, trigger } from '@angular/anim
 import { Component, OnInit, ViewChild, ElementRef, HostBinding  } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AppConfig } from './services/app-config.service';
+import { ConamypeService } from './services/conamype.service';
 
 @Component({
   selector: 'app-root',
@@ -51,17 +52,19 @@ import { AppConfig } from './services/app-config.service';
 })
 export class AppComponent implements OnInit {
   title = 'frontend-conamype';
-  constructor(private appConfig: AppConfig) {
+  constructor(public appConfig: AppConfig, private conamypeService: ConamypeService) {
       
   }
   ngOnInit(): void {
+    this.conamypeService.template("contactenos").subscribe( (data: any) => {
+        console.log(data);
+    } );
     if (this.appConfig.habilitarSonido) {
       var audio = document.getElementById("audioBackground") as HTMLAudioElement;
+      audio.loop=true;
       audio.play();
     }
   }
-
-
   prepareRoute(outlet: RouterOutlet) {
     return outlet.isActivated ?  outlet.activatedRouteData['page']  : 'inicio';
    // return outlet.activatedRouteData['page'] || 'inicio';

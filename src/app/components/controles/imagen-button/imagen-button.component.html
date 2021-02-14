@@ -2,7 +2,7 @@
     <a href="#" (click)="onBtnClickEvent($event)" [routerLink]="btnConfig.routeLink ?  btnConfig.routeLink : []">
         <img class="{{ btnConfig.img.class }}" [src]="btnConfig.img.src" alt="Avatar" [ngStyle]="btnConfig.img.styles">
         <div class="middle">
-            <div class="text"> {{ btnConfig.text }} </div>
+            <div [class]="'text ' + (btnConfig.textClass == null ? '' :  btnConfig.textClass)  "> {{ btnConfig.text }} </div>
         </div>
     </a>
 </div>

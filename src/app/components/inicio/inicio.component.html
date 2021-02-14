@@ -9,7 +9,7 @@
                     </div>
                 </div>
 
-                <div class="row mt-5">
+                <div class="row mt-3 no-gutters">
                     <div class="col-2 mx-auto">
                         <div class="row no-gutters">
                             <div class="col-3">
@@ -35,14 +35,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mt-1">
-                    <div class="col-12">
-                        <p style="font-family: 'Fira Sans';color: #3786c6" class="font-weight-bold text-center">CONAMYPE / 2021 / EL SALVADOR</p>
-                    </div>
+                <div class="w-100 text-center mb-1">
+                    <p style="font-family: 'Fira Sans';color: #3786c6" class="font-weight-bold text-center m-0">CONAMYPE / {{ appConfig.fecha | date:'yyyy' }} / EL SALVADOR</p>
                 </div>
-            </div>
-        </div>
+                <div class="w-100 text-center text-dark">
+                    <app-audio></app-audio>
+                </div>
 
+            </div>
+
+        </div>
     </div>
 
 </div>

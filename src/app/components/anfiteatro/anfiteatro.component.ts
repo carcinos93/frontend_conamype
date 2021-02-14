@@ -16,7 +16,10 @@ export class AnfiteatroComponent implements OnInit {
 
   }
 
-  
+  /**
+   * 
+   * @param event 
+   */
   bntAnterior(event) {
     this.route.navigate(['/recepcion']);
   }

@@ -1,10 +1,27 @@
 <nav *ngIf="validarRuta()" class="navbar navbar-expand-lg navbar-light fixed-top py-3 bg-light position-relative" id="mainNav">
-    <div class="container p-0">
+    <div class="container mx-auto m-0 p-0">
+
         <!--<app-button (OnBtnClick)="atras($event)" [btnConfig]="{ tipo : 'anterior', classes: [  ],  styles: { 'display' : 'block' } }"></app-button>-->
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
+
+
+            <div class="form-inline animated fadeIn" *ngIf="habilitarBusqueda">
+
+                <input (keyup.enter)="buscar( textoBusqueda.value  )" style="box-sizing: border-box; width: 250px;" #textoBusqueda autocomplete="off" type="search" class="form-control mr-sm-2" placeholder="Busqueda" aria-label="Busqueda" aria-describedby="search-addon"
+                />
+                <span title="buscar" (click)="buscar( textoBusqueda.value  )" class="input-group-text border-0 cursor-pointer" id="search-addon">
+                              <i class="fa fa-search"></i>
+                            </span>
+                <span (click)="limpiar( )" title="Limpiar busqueda" class="input-group-text border-0 cursor-pointer ml-1" id="search-addon">
+                            <i class="fa fa-times-circle" aria-hidden="true"></i>
+             </span>
+
+            </div>
+
+
             <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="alert('En construccion'); return false;" href="#">¿QUIENES SOMOS?</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" [routerLink]="['/quienes-somos']">¿QUIÉNES SOMOS?</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="alert('En construccion'); return false;" href="#" href="#">SERVICIOS</a></li>
                 <li class="nav-item dropdown" *ngIf="lsService.isAuthenticated()">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="nav-label">SALAS</span><span class="caret"></span></a>
@@ -16,8 +33,11 @@
                         <!--<li><a class="nav-link js-scroll-trigger" [routerLink]="['/inicio-alterno']"> Pagina de incio (alterna) </a></li>-->
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="alert('En construccion'); return false;" href="#" href="#">CONTACTENOS</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" [routerLink]="['/contactenos']">CONTÁCTENOS</a></li>
                 <li class="nav-item" *ngIf="lsService.isAuthenticated()"><span class="nav-link js-scroll-trigger" (click)="logout()">SALIR</span></li>
+                <li class="nav-item">
+                    <app-audio [config]="{ style: 'color: rgba(48, 126, 228, 0.7);' }"></app-audio>
+                </li>
                 <!--<li class="nav-item" *ngIf="!lsService.isAuthenticated()"><a class="nav-link js-scroll-trigger" href="#">Entrada </a></li>-->
             </ul>
         </div>

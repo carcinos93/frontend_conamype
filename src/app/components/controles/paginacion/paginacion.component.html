@@ -1,9 +1,9 @@
 <nav [ngStyle]="config.styles" [ngClass]="config.class">
     <ul class="pagination cursor-pointer mx-auto">
-        <li class="page-item" [class.disabled]="paginaActual == 1 "><a disabled="paginaActual == 1" class="page-link" (click)="OnPaginaClick( paginaActual - 1 )">Anterior</a></li>
+        <li [class.disabled]="paginaActual == 1 "><a disabled="paginaActual == 1" class="page-link page-item" (click)="OnPaginaClick( paginaActual - 1 )"> {{ anteriorTexto }} </a></li>
         <li *ngFor="let pagina of paginas" class="page-item" [class.active]="pagina == paginaActual">
             <a class="page-link" (click)="OnPaginaClick( pagina )"> {{ pagina }} </a>
         </li>
-        <li class="page-item" [class.disabled]="paginaActual == totalPaginas"><a disabled="paginaActual == totalPaginas " class="page-link" (click)="OnPaginaClick( paginaActual + 1 )">Siguiente</a></li>
+        <li class="page-item page-link" [class.disabled]="paginaActual == totalPaginas"><a disabled="paginaActual == totalPaginas " (click)="OnPaginaClick( paginaActual + 1 )">{{ siguienteTexto }}</a></li>
     </ul>
 </nav>

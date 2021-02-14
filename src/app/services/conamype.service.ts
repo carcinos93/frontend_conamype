@@ -17,6 +17,22 @@ export class ConamypeService {
   constructor(private http: HttpClient, private lrService: LocalStorageService, private appConfig: AppConfig) { 
     this.urlService = this.appConfig.servicios.base;
   }
+
+  test() { 
+    var headers = new HttpHeaders().append('Accept','text/html').append('Content-Type', 'application/json');
+    return this.http.post( `http://localhost:10224/mail_ws/api/recuperarPassword`, '{ "correo" : "nelson.rodas1993@gmail.com" }' , { 
+      headers: headers
+    });
+  }
+
+  template( nombre: string ) {
+    var headers = new HttpHeaders().append('Content-Type', 'text/html');
+    return this.http.get( `./assets/templates/${nombre}.template.html`, { 
+      headers: headers,
+      responseType: 'text'
+    });
+  }
+
   ferias() {
     var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
     return this.http.get( `${ this.urlService }ferias.php`, { 
@@ -37,11 +53,13 @@ export class ConamypeService {
     });
   }
 
+
+
   pabellones(idferia: string, pagina: string = null) {
 
     var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
     var registros_pagina = this.appConfig.pabellonRegistrosPorPagina();
-    return this.http.get( `${ this.urlService }pabellones_test.php`, { 
+    return this.http.get( `${ this.urlService }pabellones.php`, { 
       headers: headers, params: { 'IdFeria' : idferia, 'pagina' : pagina, 'registros_pagina' :  registros_pagina }
     } );
   }
@@ -54,23 +72,23 @@ export class ConamypeService {
     } );
   }
 
-  eventos(fecha_inicio, fecha_fin, tipo: 'RUEDA' | 'ANFITEATRO') {
+  eventos(tipo: 'RUEDA' | 'ANFITEATRO') {
       if (tipo == 'ANFITEATRO') {
-        return this.eventosAnfiteatro( fecha_inicio, fecha_fin );
+        return this.eventosAnfiteatro();
       } else if (tipo == 'RUEDA') {
-        return this.eventosRuedaNegocios(fecha_inicio, fecha_fin);
+        return this.eventosRuedaNegocios();
       }
   }
-  eventosAnfiteatro(fecha_inicio, fecha_fin) {
+  eventosAnfiteatro() {
     var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
     return this.http.get<Evento[]>( `${ this.urlService }eventosanfiteatro.php`, { 
-      headers: headers, params: { 'FechaInicio' : fecha_inicio, 'FechaFin' : fecha_fin }
+      headers: headers
     } );
   }
-  eventosRuedaNegocios(fecha_inicio, fecha_fin) {
+  eventosRuedaNegocios() {
     var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
     return this.http.get<Evento[]>( `${ this.urlService }eventosruedanegocios.php`, { 
-      headers: headers, params: { 'FechaInicio' : fecha_inicio, 'FechaFin' : fecha_fin }
+      headers: headers
     } );
   }
 

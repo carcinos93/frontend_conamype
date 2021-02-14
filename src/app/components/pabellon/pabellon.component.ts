@@ -79,8 +79,6 @@ export class PabellonComponent implements OnInit {
     let idPabellon = this.activatedRoute.snapshot.paramMap.get('idPabellon');
     let idFeria = this.activatedRoute.snapshot.paramMap.get('idFeria');
 
-    
-
     if (idPabellon != null) {
         this.seleccionarPabellon_Participantes( idPabellon );
     } else {
@@ -110,9 +108,12 @@ export class PabellonComponent implements OnInit {
     });
   }
   
+  buscarPabellon( termino: string ) {
+    this.onPaginaParticipante( "1", termino );
+  }
   onPaginaParticipante( pagina, termino: string = "" ) {
     this.paginaParticipante = pagina;
-    this.conamypeService.participantes(this.selectedFeria, pagina, termino).subscribe((e: any) => {
+    this.conamypeService.participantes(this.selectedPabellon, pagina, termino).subscribe((e: any) => {
       this.participantes = [];
       setTimeout( () => {
         this.participantes = e.data;  

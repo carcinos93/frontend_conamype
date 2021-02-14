@@ -9,7 +9,6 @@ export class AppConfig {
   private config: Config = null;
   constructor(private http: HttpClient) { 
   }
-  
   public pabellonRegistrosPorPagina(): string {
     return this.config.pabellon.registrosPorPagina;   
   }
@@ -18,7 +17,7 @@ export class AppConfig {
     return this.config.participante.registrosPorPagina;   
   }
 
-  public habilitarSonido(): boolean {
+  get habilitarSonido(): boolean {
     return this.config.habilitarSonido;
   }
 
@@ -36,7 +35,9 @@ export class AppConfig {
     return this.config.urlChat;
   }
 
-  
+  get fecha() {
+    return new Date();
+  }
 
   public loadAppConfig(): any {
     const envFile = environment.production ? 'prod' : 'dev';

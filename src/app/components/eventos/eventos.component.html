@@ -10,11 +10,11 @@
                         <div [@slideInOut]="animacion_estado" (@slideInOut.done)="animacionVideo($event)" id="video-contenedor">
                         </div>
                         <div id="contenido-anfiteatro">
-                            <button (click)="cerrar()" style="background-image: url('./assets/img/botones_cerrar.png');background-size: contain;width: 40px;height:40px;" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                            <button (click)="cerrar()" style="background-image: url('./assets/img/botones_cerrar.png');background-size: contain;width: 30px;height:30px;" type="button" class="close mr-2 mt-2" data-dismiss="modal" aria-hidden="true"></button>
                             <div class="text-center w-100 p-4">
                                 <h2> {{ titulo_tabla }}</h2>
                             </div>
-                            <table class="table" border="1" style="background-color: #f6fafb; border-color: rgb(155, 151, 151);">
+                            <table class="table" border="1" style="background-color: #f6fafb; border-left: none; border-right: none;">
                                 <thead>
                                     <th>Fecha</th>
                                     <th>Hora</th>
@@ -34,7 +34,7 @@
                                                                 'text-danger' : evento.Status == 'terminado' && !SringisEmpty(evento.Vinculo_Video), 
                                                                 'fa-users' :  evento.Status != 'terminado' && !SringisEmpty(evento.Vinculo_Inscripcion),
                                                                 'text-primary' :  evento.Status != 'terminado' && !SringisEmpty(evento.Vinculo_Inscripcion)
-                                                            }" (click)="mostrarEvento( evento)" class="fa fa-2x text-hide" aria-hidden="true"></i> </td>
+                                                            }" (click)="mostrarEvento( evento)" class="fa fa-2x text-hide cursor-pointer" aria-hidden="true"></i> </td>
                                     </tr>
                                 </tbody>
                             </table>

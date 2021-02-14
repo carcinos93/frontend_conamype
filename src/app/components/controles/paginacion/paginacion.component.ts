@@ -3,7 +3,8 @@ import { Component, Input, OnInit, Output, EventEmitter, OnChanges, SimpleChange
 @Component({
   selector: 'app-paginacion',
   templateUrl: './paginacion.component.html',
-  styles: [
+  styles: [ 
+    '.active{ background-color: rgba(48,126,228,.7); color: black }'
   ]
 })
 export class PaginacionComponent implements OnInit, OnChanges {
@@ -13,15 +14,20 @@ export class PaginacionComponent implements OnInit, OnChanges {
   @Input() paginaEnlinea: number = 5;
   @Output() OnPagina = new EventEmitter();
   @Input() config: any = {};
+  anteriorTexto: string = "anterior";
+  siguienteTexto: string = "siguiente";
   paginas: number[] = [];
   constructor() {
+
         this.paginacion();
    }
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['totalPaginas'].previousValue != changes['totalPaginas'].currentValue && changes['totalPaginas'].currentValue != null)
-    {
-      this.paginacion();
-    }
+    if (changes['totalPaginas'] != undefined) {
+      if (changes['totalPaginas'].previousValue != changes['totalPaginas'].currentValue && changes['totalPaginas'].currentValue != null)
+      {
+        this.paginacion();
+      }
+    } 
   }
   OnPaginaClick(pagina: number) {
     this.paginaActual = pagina;
@@ -48,7 +54,12 @@ export class PaginacionComponent implements OnInit, OnChanges {
 
   }
   ngOnInit(): void {
-        
+    if (this.config.siguienteTexto != null) {
+      this.siguienteTexto = this.config.siguienteTexto ;
+    }
+    if (this.config.anteriorTexto != null) {
+      this.anteriorTexto = this.config.anteriorTexto ;
+    }
   }
   
 

@@ -1,16 +1,7 @@
-<app-header></app-header>
+<app-header [habilitarBusqueda]="participantesActivo" (OnBuscar)="buscarPabellon($event)"></app-header>
 
 <!--<app-button (OnBtnClick)="bntAnterior($event)" [btnConfig]="{ tipo : 'anterior', classes: [ ], container : '#mainNav .container' }"></app-button>-->
-<div class="row mt-1 mb-1">
-    <div class="col-2 mx-auto animated fadeIn" *ngIf="participantesActivo">
-        <div class="input-group rounded">
-            <input (keyup.enter)="onPaginaParticipante( '1', textoBusqueda.value  )" #textoBusqueda autocomplete="off" type="search" class="form-control rounded" placeholder="Busqueda" aria-label="Busqueda" aria-describedby="search-addon" />
-            <span (click)="onPaginaParticipante( '1', textoBusqueda.value  )" class="input-group-text border-0 cursor-pointer" id="search-addon">
-              <i class="fa fa-search"></i>
-            </span>
-        </div>
-    </div>
-</div>
+
 <div class="position-relative canvas-unity mx-auto">
     <app-canvas [unityObjeto]="appConfig.unityObjeto.pabellon" [autoWidth]="false" (thenEvent)="canvasCargado($event)"></app-canvas>
     <app-button (OnBtnClick)="bntAnterior($event)" [btnConfig]="{ tipo: 'anterior', classes : 'posIzquierda' }"></app-button>
@@ -26,25 +17,11 @@
                                     <div (click)="seleccionarPabellon_Participantes( item.IdPabellon )" class="image_component invert position-relative cursor-pointer" style="background-color: rgba(255, 255, 255, 0.4);">
                                         <img class="img-fluid" [src]="item.logo_pabellon">
                                         <div class="middle w-100">
-                                            <div class="text" style="font-size: 1.5rem !important;"> {{ item.Nombre_Pabellon }} </div>
+                                            <div class="text" style="font-size: 1.5rem !important;"> {{ item.Nombre_Pabellon | uppercase }} </div>
                                         </div>
 
                                     </div>
-                                    <!--<app-imagen-button (OnBtnClick)="seleccionarPabellon_Participantes( item.IdPabellon )" [btnConfig]="{ img: { src: item.logo_pabellon, 
-                                        class: 'img-fluid', styles: { 'border' : '4px rgba(255, 255, 255, 0.5)', 'font-size' : '1.5rem !important' }  }, 
-                                    text: item.Nombre_Pabellon }">
-                                    </app-imagen-button>-->
-                                    <!--<div (click)="seleccionarPabellon_Participantes( item.IdPabellon )" class="portfolio-box" data-idPabellon="{{ item.IdPabellon }}">
-                                        <img src="{{ item.logo_pabellon }}" alt="" style="width:100%; border:10px solid #a55133">
-                                        <div class="portfolio-box-caption">
-                                            <div class="project-category text-white-50">
-                                                {{ item.Nombre_Pabellon }}
-                                            </div>
-                                            <div class="project-name">Pabellon No {{ item.IdPabellon }}</div>
-                                        </div>
-                                    </div>-->
                                 </div>
-                                <!-- <div *ngIf="(i + 1 ) % 4 == 0 " class='w-100 banda-color' style='background-color:#99ffff; height: 20px'></div>-->
                             </ng-template>
                         </div>
                     </div>
@@ -62,7 +39,7 @@
                             <div class="col-2 text-center">
                                 <div class="mt-4">
                                     <a [routerLink]="['/stand',item.IdEstand, item.IdParticipante, selectedPabellon, selectedFeria ]">
-                                        <img [src]="item.Logo_Participante" class="img-fluid rounded-circle" style=" padding:20px">
+                                        <img [title]="item.Nombre_Participante" [src]="item.Logo_Participante" class="img-fluid rounded-circle" style=" padding:20px">
                                     </a>
                                 </div>
                             </div>
@@ -76,7 +53,7 @@
 </div>
 <div class="row" *ngIf="pabellonesActivo">
     <div class="col-8 mx-auto">
-        <app-paginacion [totalPaginas]="pabellonTotalPaginas" [config]="{ class:  'd-flex align-content-center' }" [paginaActual]="paginaPabellon" (OnPagina)="onPaginaPabellon($event)"></app-paginacion>
+        <app-paginacion [totalPaginas]="pabellonTotalPaginas" [config]="{ class:  'd-flex align-content-center', siguienteTexto: 'Pabellón siguiente', anteriorTexto: 'Pabellón anterior' }" [paginaActual]="paginaPabellon" (OnPagina)="onPaginaPabellon($event)"></app-paginacion>
     </div>
 </div>
 <div class="row" *ngIf="participantesActivo">

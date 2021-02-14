@@ -1,0 +1,87 @@
+<app-header></app-header>
+<div class="container w-75">
+    <div class="w-100 text-center">
+        <img class="img-fluid" src="./assets/img/contactenos-banner.png" alt="">
+    </div>
+    <div class="container">
+        <div class="row mt-5 ">
+            <div class="col-4 mx-auto">
+                <div [innerHTML]="contenido | sanitizeHtml">
+
+                </div>
+            </div>
+            <div class="col-6 mr-3">
+                <div class="p-4 font-weight-bold" style="border-radius: 30px;background-color: #E4E4E4">
+                    <form role="form" (ngSubmit)="enviar()" [formGroup]="formulario">
+
+
+                        <div class="h5 mb-3 contacto-titulo font-weight-bold">
+                            Formulario de Contacto
+                        </div>
+                        <div class="form-group">
+                            <label>Nombre: </label>
+                            <input formControlName="Nombre" class="form-control" type="text" name="">
+                            <small class="text-danger w-100 d-block" *ngIf="controlValido('Nombre')">
+                               Nombre es requerido
+                             </small>
+                        </div>
+                        <div class="form-group">
+                            <label>Dirección de correo electrónico: </label>
+                            <input formControlName="Correo" class="form-control" type="email" name="">
+                            <small class="text-danger w-100 d-block" *ngIf="controlValido('Correo')">
+                                Dirección de correo electrónico es requerido
+                              </small>
+                        </div>
+                        <div class="form-group">
+                            <label>Tipo de mensaje: </label>
+                            <input formControlName="tipoMensaje" class="form-control" type="text" name="">
+                            <small class="text-danger w-100 d-block" *ngIf="controlValido('tipoMensaje')">
+                                Tipo de mensaje es requerido
+                              </small>
+                        </div>
+                        <div class="form-group">
+                            <label>Escriba su mensaje: </label>
+                            <textarea formControlName="mensaje" class="form-control" name="" id="" cols="25" rows="5"></textarea>
+                            <small class="text-danger w-100 d-block" *ngIf="controlValido('mensaje')">
+                                Mensaje es requerido
+                              </small>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row mt-5 no-gutters">
+        <div class="col-2 mx-auto">
+            <div class="row no-gutters">
+                <div class="col-3">
+                    <a [href]="appConfig.redes.facebook" target="_blank">
+                        <img src="./assets/img/botones_fb.png" width="75%" class="img-fluid" alt="">
+                    </a>
+                </div>
+                <div class="col-3">
+                    <a [href]="appConfig.redes.whatapp" target="_blank">
+                        <img src="./assets/img/botones_whatsapp.png" width="75%" class="img-fluid" alt="">
+                    </a>
+                </div>
+                <div class="col-3">
+                    <a [href]="appConfig.redes.twitter" target="_blank">
+                        <img src="./assets/img/botones_tw.png" width="75%" class="img-fluid" alt="">
+                    </a>
+                </div>
+                <div class="col-3">
+                    <a [href]="appConfig.redes.instagram" target="_blank">
+                        <img src="./assets/img/botones_insta.png" width="75%" class="img-fluid" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-100 text-center mt-2">
+        <p class="font-weight-bold text-center m-0 contacto-titulo">CONAMYPE / {{ appConfig.fecha | date:'yyyy' }} / EL SALVADOR</p>
+    </div>
+</div>

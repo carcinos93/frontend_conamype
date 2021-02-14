@@ -49,7 +49,7 @@ export class EventosComponent implements OnInit {
   fechaFin: Date = new Date();
   eventoClick(event) { 
 
-    this.conamypeService.eventos( "'2020-02-01'", "'2021-02-28'", this.tipo ).subscribe((data) => {
+    this.conamypeService.eventos( this.tipo ).subscribe((data) => {
       this.eventos = data;
         $("#eventos").removeClass('hidden');
         $("canvas").addClass("blur");
