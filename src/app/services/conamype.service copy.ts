@@ -6,11 +6,11 @@ import { Directorio } from '../models/directorio.model';
 import { Evento } from '../models/evento.model';
 import { AppConfig } from './app-config.service';
 import { LocalStorageService } from './local-storage.service';
-
+/*
 @Injectable({
   providedIn: 'root'
-})
-export class ConamypeService {
+})*/
+export class ConamypeService_e {
 
   urlService:string;
   isAuthenticate = false;
@@ -35,7 +35,7 @@ export class ConamypeService {
 
   ferias() {
     var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
-    return this.http.get( `${ this.urlService }ferias`, { 
+    return this.http.get( `${ this.urlService }ferias.php`, { 
       headers: headers, params: { 'IdFeriasEventos' : '1' }
     } );/*.pipe( map( (data: any[]) => {
         let copy = data;
@@ -48,7 +48,7 @@ export class ConamypeService {
 
   directorio() {
     var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
-    return this.http.get<Directorio[]>( `${ this.urlService }directorio`, { 
+    return this.http.get<Directorio[]>( `${ this.urlService }directorio.php`, { 
       headers: headers
     });
   }
@@ -59,7 +59,7 @@ export class ConamypeService {
 
     var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
     var registros_pagina = this.appConfig.pabellonRegistrosPorPagina();
-    return this.http.get( `${ this.urlService }pabellones`, { 
+    return this.http.get( `${ this.urlService }pabellones.php`, { 
       headers: headers, params: { 'IdFeria' : idferia, 'pagina' : pagina, 'registros_pagina' :  registros_pagina }
     } );
   }
@@ -67,7 +67,7 @@ export class ConamypeService {
   participantes(idPabellon: string, pagina: string = null, termino: string = "") {
     var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
     var registros_pagina = this.appConfig.participanteRegistrosPorPagina();
-    return this.http.get( `${ this.urlService }participantes`, { 
+    return this.http.get( `${ this.urlService }participantes.php`, { 
       headers: headers, params: { 'IdPabellon' : idPabellon, 'registros_pagina' :registros_pagina, 'termino' : termino }
     } );
   }
@@ -81,23 +81,23 @@ export class ConamypeService {
   }
   eventosAnfiteatro() {
     var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
-    return this.http.get<Evento[]>( `${ this.urlService }eventosAnfiteatro`, { 
+    return this.http.get<Evento[]>( `${ this.urlService }eventosanfiteatro.php`, { 
       headers: headers
     } );
   }
   eventosRuedaNegocios() {
     var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
-    return this.http.get<Evento[]>( `${ this.urlService }eventosRuedaNegocios`, { 
+    return this.http.get<Evento[]>( `${ this.urlService }eventosruedanegocios.php`, { 
       headers: headers
     } );
   }
 
   stand(idParticipante: string, idPabellon: string, idStand: string) {
     var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
-    let data = this.http.get(`${ this.urlService }estand/recursos`, { headers: headers, params: { 'IdParticipante' : idParticipante } });
-    let data2 = this.http.get(`${ this.urlService }estand/participante`, { headers: headers, params: { 'IdEstand' : idStand } });
-    let redes = this.http.get(`${ this.urlService }estand/redesSociales`, { headers: headers, params: { 'IdParticipante' : idParticipante } });
-    let perfil = this.http.get(`${ this.urlService }estand/perfilEmpresa`, { headers: headers, params: { 'IdParticipante' : idParticipante } });
+    let data = this.http.get(`${ this.urlService }recursos.php`, { headers: headers, params: { 'IdParticipante' : idParticipante } });
+    let data2 = this.http.get(`${ this.urlService }participante.php`, { headers: headers, params: { 'IdStand' : idStand } });
+    let redes = this.http.get(`${ this.urlService }redessociales.php`, { headers: headers, params: { 'IdParticipante' : idParticipante } });
+    let perfil = this.http.get(`${ this.urlService }perfilempresa.php`, { headers: headers, params: { 'IdParticipante' : idParticipante } });
     return forkJoin([data, data2, redes, perfil]).pipe(
       map(([data, data2, redes, perfil],index) => {
        let valor2 = data2 /*(data2 as any).filter( e => {
@@ -113,7 +113,7 @@ export class ConamypeService {
           }
 
         (data as any).map((e) => {
-          this.http.get(`${ this.urlService }estand/participanteRecursos`, 
+          this.http.get(`${ this.urlService }participanterecursos.php`, 
           { headers: headers, params: { 'IdParticipante' : idParticipante ,'IdRecurso' :  e.IdRecurso} }
           ).subscribe( (i) =>
               {
@@ -130,15 +130,15 @@ export class ConamypeService {
 
   registro(data: any) {
     var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
-    return this.http.post( `${ this.urlService }registro` , data , { 
-      headers: headers
+    return this.http.get( `${ this.urlService }nuevo_registro.php`, { 
+      headers: headers, params: data
     } );
     //this.login( username, password );
   }
   login(username: string, password: string, recordarme: boolean = false ) {
     var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
-    return this.http.post( `${ this.urlService }login`, { 'CorreoVisitante' : username, 'Password' : password }, { 
-      headers: headers 
+    return this.http.get( `${ this.urlService }nuevo_login.php`, { 
+      headers: headers, params: { 'CorreoVisitante' : username, 'Password' : password }
     } ).pipe(
       map( (data: any) => {
           if (data.success) {
