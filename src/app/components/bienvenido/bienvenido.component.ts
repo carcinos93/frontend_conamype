@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-bienvenido',
   templateUrl: './bienvenido.component.html',
-  styles: [ 
+  styles: [ ':host { display: block;}' 
   ]
 })
 export class BienvenidoComponent implements OnInit  {

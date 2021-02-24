@@ -13,6 +13,7 @@
         "instagram": "https://www.instagram.com/conamypesv/",
         "whatapp": "https://wa.me/50370747074"
     },
+    "extensionObjeto": "unityweb",
     "unityObjetos": {
         "pabellon": "Pabellon",
         "recepcion": "Recepcion",
@@ -21,11 +22,15 @@
         "fachada": "Fachada"
     },
     "servicios": {
-        "base": "http://72.167.226.188/~oqmdev/ws/",
-        "ruedaNegocios": "http://72.167.226.188/~oqmdev/ws/rueda_negocios.php",
-        "anfiteatro": "http://72.167.226.188/~oqmdev/ws/anfiteatro.php",
-        "pabellon": "http://72.167.226.188/~oqmdev/ws/pabellon_publicidad.php",
-        "recepcion": "http://72.167.226.188/~oqmdev/ws/centro_eventos.php?IdFeriasEventos=1"
+        "base": "/mail_ws/api/",
+        "ruedaNegocios": "/mail_ws/api/unity/ruedaNegocios",
+        "anfiteatro": "/mail_ws/api/unity/anfiteatro",
+        "pabellon": "/mail_ws/api/unity/pabellon",
+        "recepcion": "/mail_ws/api/unity/recepcion",
+        "estand": {
+            "estand": "/mail_ws/api/estand",
+            "centro_ferias_eventos": "/mail_ws/api/centroEventos"
+        }
     }
 
 }

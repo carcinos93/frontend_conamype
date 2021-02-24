@@ -11,6 +11,7 @@ import { RuedaNegociosComponent } from './components/rueda-negocios/rueda-negoci
 import { StandComponent } from './components/stand/stand.component';
 import { ContactenosComponent } from './components/contactenos/contactenos.component';
 import { QuienesSomosComponent } from './components/quienes-somos/quienes-somos.component';
+import { RecuperarPasswordComponent } from './components/recuperar-password/recuperar-password.component';
 
 const routes: Routes = [
   { path: 'recepcion', component: RecepcionComponent, data: { page: 'recepcion' }  },
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: 'registro', component: RegistroComponent, data: { page: 'registro' }  },
   { path: 'rueda-negocios', component: RuedaNegociosComponent, data: { page: 'rueda-negocios' }  },
   { path: 'contactenos', component: ContactenosComponent, data: { page: 'contactenos' }  },
-  { path: 'quienes-somos', component: QuienesSomosComponent, data: { page: 'contactenos' }  },
+  { path: 'quienes-somos', component: QuienesSomosComponent, data: { page: 'quienes-somos' }  },
+  { path: 'recuperarPassword', component: RecuperarPasswordComponent, data: { page: 'recuperarPassword' }  },
   { path: '**', pathMatch: 'full', redirectTo: 'bienvenido' },
 ];
 

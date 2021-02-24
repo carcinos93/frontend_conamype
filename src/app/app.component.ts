@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild, ElementRef, HostBinding  } from '@angular
 import { RouterOutlet } from '@angular/router';
 import { AppConfig } from './services/app-config.service';
 import { ConamypeService } from './services/conamype.service';
+import { LocalStorageService } from './services/local-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -10,18 +11,10 @@ import { ConamypeService } from './services/conamype.service';
  styles: [ ],
   animations: [ trigger('routeAnimations', [
     transition( '* => *', [
-
-      query(':enter', 
-          [
-              style({ opacity: 0 })
-          ], 
-          { optional: true }
-      ),
-
       query(':leave', 
           [
               style({ opacity: 1 }),
-              animate('0.2s', style({ opacity: 0 }))
+              animate('0.5s', style({ opacity: 0 }))
           ], 
           { optional: true }
       ),
@@ -29,7 +22,7 @@ import { ConamypeService } from './services/conamype.service';
       query(':enter', 
           [
               style({ opacity: 0 }),
-              animate('0.2s', style({ opacity: 1 }))
+              animate('0.7s', style({ opacity: 1 }))
           ], 
           { optional: true }
       )
@@ -52,13 +45,15 @@ import { ConamypeService } from './services/conamype.service';
 })
 export class AppComponent implements OnInit {
   title = 'frontend-conamype';
-  constructor(public appConfig: AppConfig, private conamypeService: ConamypeService) {
-      
+  constructor(public appConfig: AppConfig, private conamypeService: ConamypeService, private lsService: LocalStorageService) {
+        this.conamypeService.checkToken().subscribe( (data: any) => {
+              if (!data.tokenValido) {
+                this.lsService.logout();
+              }
+        } );
   }
   ngOnInit(): void {
-    this.conamypeService.template("contactenos").subscribe( (data: any) => {
-        console.log(data);
-    } );
+
     if (this.appConfig.habilitarSonido) {
       var audio = document.getElementById("audioBackground") as HTMLAudioElement;
       audio.loop=true;

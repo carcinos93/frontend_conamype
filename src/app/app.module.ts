@@ -2,7 +2,7 @@ import { BrowserModule, } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { RouterModule   } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -29,6 +29,9 @@ import { RecursosComponent } from './components/recursos/recursos.component';
 import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
 import { ContactenosComponent } from './components/contactenos/contactenos.component';
 import { QuienesSomosComponent } from './components/quienes-somos/quienes-somos.component';
+import { AuditoriaInterceptorService } from './services/auditoria-interceptor.service';
+import { RecuperarPasswordComponent } from './components/recuperar-password/recuperar-password.component';
+import { LoadingComponent } from './components/controles/loading/loading.component';
 const appInitializerFn = (appConfig: AppConfig) => {
   return () => {
     return appConfig.loadAppConfig();
@@ -59,7 +62,9 @@ const appInitializerFn = (appConfig: AppConfig) => {
     RecursosComponent,
     SanitizeHtmlPipe,
     ContactenosComponent,
-    QuienesSomosComponent
+    QuienesSomosComponent,
+    RecuperarPasswordComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +80,14 @@ const appInitializerFn = (appConfig: AppConfig) => {
     useFactory: appInitializerFn,
     multi: true,
     deps: [AppConfig]
-  } ],
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuditoriaInterceptorService,
+    multi: true
+  }
+
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

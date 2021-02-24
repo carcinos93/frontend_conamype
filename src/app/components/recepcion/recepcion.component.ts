@@ -9,6 +9,7 @@ import { AppConfig } from '../../services/app-config.service';
   selector: 'app-recepcion',
   templateUrl: './recepcion.component.html',
   styles: [ 
+    ':host { display: block;}' ,
     ' p { font-family: "Fira Sans"; color: #233971 } ',
     '.icono-sort { color: #233971 } ',
     '.scrollable { max-height: 548px; overflow-y: auto;} ',
@@ -35,11 +36,11 @@ export class RecepcionComponent implements OnInit, AfterViewInit {
 
   ferias = [];
   ngOnInit(): void {
-    this.conamypeService.ferias().subscribe((res: any) => {
-      this.ferias = res;
-    });
+ 
     if (this.lsService.isAuthenticated()) {
-      //this.tiempoVentanas();
+      this.conamypeService.ferias().subscribe((res: any) => {
+        this.ferias = res;
+      });
     }
 
   }
@@ -82,6 +83,9 @@ export class RecepcionComponent implements OnInit, AfterViewInit {
   }*/
   afterLogin() {
       //this.tiempoVentanas();
+      this.conamypeService.ferias().subscribe((res: any) => {
+        this.ferias = res;
+      });
   }
 
   bntAnterior(event) {

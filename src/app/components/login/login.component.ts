@@ -30,9 +30,11 @@ export class LoginComponent implements OnInit {
        $("#login").removeClass('hidden').addClass("animated fadeIn");
         let dataUser = this.lsService.getUserData();
         if (dataUser != null) {
-           this.loginForm.controls['correoVisitante'].setValue( dataUser.username );
-           this.loginForm.controls['password'].setValue( dataUser.password );
-           this.recordarme.nativeElement.checked = dataUser.recordar;
+          if (!$("#login").hasClass('hidden')) {
+            this.loginForm.controls['correoVisitante'].setValue( dataUser.username );
+            this.loginForm.controls['password'].setValue( dataUser.password );
+            this.recordarme.nativeElement.checked = dataUser.recordar;
+          }
         }
       
     }, this.timeShow * 1000 );
@@ -55,9 +57,11 @@ export class LoginComponent implements OnInit {
       this.conamypeService.login( correo, password, this.recordarme.nativeElement.checked  ).subscribe((data: any) => {
         if (!data.success) {
           alert(data.message);
+        } else {
+          this.afterLogin.emit();
         }
       });
-      this.afterLogin.emit();
+
   
   }
 

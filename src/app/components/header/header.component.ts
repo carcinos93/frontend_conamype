@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { CommunicationService } from 'src/app/services/communication.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({

@@ -1,5 +1,7 @@
+import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { param } from 'jquery';
 import { AppConfig } from 'src/app/services/app-config.service';
 import { ConamypeService } from 'src/app/services/conamype.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
@@ -9,6 +11,7 @@ import { CanvasComponent } from '../canvas/canvas.component';
   selector: 'app-stand',
   templateUrl: './stand.component.html',
   styles: [ 
+    ':host { display: block;}' ,
     ' p, .icono-sort { font-family: "Fira Sans"; color: #233971 } ',
     '.modal-recurso img  { width: 75% }', 
    ' @media (max-width:1440px){ .modal-recurso img { width:50% }  }',
@@ -33,10 +36,11 @@ export class StandComponent implements OnInit {
       this.idPabellon = idPabellon;
       this.conamypeService.stand( idParticipante, idPabellon, idStand ).subscribe((data: any) => {
         this.stand = data;
-
+        let estandObjeto = this.appConfig.servicios.estand;
+        estandObjeto['parametros'] = `?IdEstand=${data.valor2.IdEstand}`;
         if (data.valor2 != null) {
-           this.canvas.cargarUnity(data.valor2.Objeto3D, { objeto: 'Codigo', funcionNombre: 'ImagenDB', parametros:
-           `?IdEstand=${data.valor2.IdEstand}` });
+           this.canvas.cargarUnity(data.valor2.Objeto3D, { objeto: 'Codigo', funcionNombre: 'ImagenDB', parametros: JSON.stringify(estandObjeto)
+            });
         }
       });
   }

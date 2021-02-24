@@ -39,6 +39,10 @@ export class AppConfig {
     return new Date();
   }
 
+  get extensionObjeto() {
+    return this.config.extensionObjeto;
+  }
+
   public loadAppConfig(): any {
     const envFile = environment.production ? 'prod' : 'dev';
     var f = new Date().toISOString();
@@ -46,6 +50,7 @@ export class AppConfig {
     .toPromise()
     .then( (data: Config) => { 
       this.config = data;
+
     });
 
   }
@@ -69,6 +74,7 @@ export interface Config
     whatapp: string,
     instagram: string
    }
+   extensionObjeto: string,
    unityObjetos: {
     pabellon: string,
     recepcion: string,
@@ -81,6 +87,7 @@ export interface Config
     ruedaNegocios: string,
     anfiteatro: string,
     pabellon: string,
-    recepcion: string
+    recepcion: string,
+    estand: object
    }
 }

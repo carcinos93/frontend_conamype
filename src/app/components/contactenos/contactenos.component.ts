@@ -5,7 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 @Component({
   selector: 'app-contactenos',
   templateUrl: './contactenos.component.html',
-  styles: [
+  styles: [':host { display: block;}' 
   ]
 })
 export class ContactenosComponent implements OnInit {

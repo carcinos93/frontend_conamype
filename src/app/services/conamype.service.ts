@@ -100,14 +100,13 @@ export class ConamypeService {
     let perfil = this.http.get(`${ this.urlService }estand/perfilEmpresa`, { headers: headers, params: { 'IdParticipante' : idParticipante } });
     return forkJoin([data, data2, redes, perfil]).pipe(
       map(([data, data2, redes, perfil],index) => {
-       let valor2 = data2 /*(data2 as any).filter( e => {
+       let valor2 = data2; /*(data2 as any).filter( e => {
           if (e.IdParticipante == idParticipante)
           {
           
             return e;
           }
         });*/
-      
           if (valor2 == null) {
             valor2= [{}];
           }
@@ -121,13 +120,17 @@ export class ConamypeService {
               }
            );
         });
-
-
           return { data: data, redes: redes, perfil: perfil, valor2: valor2[0] };
       })
     );
   }
 
+  recuperarPassword( data: any ) {
+    var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
+    return this.http.post( `${ this.urlService }recuperarPassword` , data , { 
+      headers: headers
+    } );
+  }
   registro(data: any) {
     var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
     return this.http.post( `${ this.urlService }registro` , data , { 
@@ -142,7 +145,7 @@ export class ConamypeService {
     } ).pipe(
       map( (data: any) => {
           if (data.success) {
-            this.lrService.setCurrentSession( { username: username, password: password , token: this.randomString(40, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')  }, recordarme );
+            this.lrService.setCurrentSession( { username: username, password: password , token: data.token  }, recordarme );
             this.lrService.loadSessionData();
             this.isAuthenticate = true;
           }
@@ -151,27 +154,17 @@ export class ConamypeService {
       })
     );
 
-  /*this.lrService.setCurrentSession( { username: username, token: this.randomString(40, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')  } );
-  this.lrService.loadSessionData();
-  this.isAuthenticate = true;*/
 
-  /* var headers1 = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
-  console.log(headers1);
-    var data = { "CorreoVisitante" : username , "password" : password }
-    return this.http
-    .post<any>( `${this.urlService}/dologin`, data ,{headers : headers1}  ).pipe(
-      map(resp => resp)
-    );*/
-    //.pipe( map(this.extractData) );
-  //  { "CorreoVisitante" : "nelson@gmail.com" , "password" : "ngihtmare" }
 
   }
- randomString(length, chars) {
-    var result = '';
-    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
-    return result;
+
+  checkToken(  ) {
+    var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json').append('skip','');
+    return this.http.get( `${ this.urlService }checkToken`, { 
+      headers: headers 
+    } );
+
   }
-  
  private extractData(res: Response) {
   let body = res.json();
     return body;

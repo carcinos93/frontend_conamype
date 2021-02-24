@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { AppConfig } from '../../services/app-config.service';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class CanvasComponent implements OnInit, AfterViewInit, OnDestroy  {
   @ViewChild('unityCanvas') myCanvas: ElementRef<HTMLCanvasElement>;
 
   private _unityInstance: any = null;
-  constructor() {
+  public cargando: boolean = true;
+  constructor(private appConfig: AppConfig) {
 
    }
   ngOnDestroy(): void {
@@ -72,18 +74,18 @@ export class CanvasComponent implements OnInit, AfterViewInit, OnDestroy  {
     {
       $("#unityLoader").removeClass('d-none');
        var version = environment.unityVersion;
+       var extension = this.appConfig.extensionObjeto == "" ? "" : "." + this.appConfig.extensionObjeto;
       window['createUnityInstance'](this.myCanvas.nativeElement, {
-        dataUrl: `./assets/Build/${objeto}.data?version=${version}`,
-        frameworkUrl: `./assets/Build/${objeto}.framework.js?version=${version}`,
-        codeUrl: `./assets/Build/${objeto}.wasm?version=${version}`,
+        dataUrl: `./assets/Build/${objeto}.data${extension}?version=${version}`,
+        frameworkUrl: `./assets/Build/${objeto}.framework.js${extension}?version=${version}`,
+        codeUrl: `./assets/Build/${objeto}.wasm${extension}?version=${version}`,
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "ExpoMype",
         productVersion: "0.1",
-      }, (progress) => {
-          
+      }, (progress) => {    
         if (progress == 1) {
-            $("#unityLoader").addClass('d-none');
+            this.cargando = false;
           } 
 
       }).then((unityInstance) => {

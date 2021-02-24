@@ -7,7 +7,7 @@ import { AppConfig } from '../../services/app-config.service';
 @Component({
   selector: 'app-pabellon',
   templateUrl: './pabellon.component.html',
-  styles: [ '.pabellon-contenedor {  position: absolute; top : 0%; left: 0; right: 0  }'
+  styles: [ '.pabellon-contenedor {  position: absolute; top : 0%; left: 0; right: 0  }', ':host { display: block;}' 
   ],
   animations: [
     trigger('listAnimation', [

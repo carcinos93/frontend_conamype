@@ -5,7 +5,7 @@ import { AppConfig } from '../../services/app-config.service';
 @Component({
   selector: 'app-anfiteatro',
   templateUrl: './anfiteatro.component.html',
-  styles: [ 
+  styles: [ ':host { display: block;}' 
   ]
 })
 export class AnfiteatroComponent implements OnInit {

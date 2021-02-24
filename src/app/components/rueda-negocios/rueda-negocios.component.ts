@@ -7,7 +7,7 @@ import { AppConfig } from '../../services/app-config.service';
 @Component({
   selector: 'app-rueda-negocios',
   templateUrl: './rueda-negocios.component.html',
-  styles: [
+  styles: [':host { display: block;}' 
   ]
 })
 export class RuedaNegociosComponent implements OnInit {

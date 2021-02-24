@@ -6,7 +6,7 @@ import { ConamypeService } from 'src/app/services/conamype.service';
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
-  styles: [ 'form small {margin-left: 45px;}' ]
+  styles: [ 'form small {margin-left: 45px;}', ':host { display: block;}'  ]
 })
 export class RegistroComponent implements OnInit {
   formulario: FormGroup;

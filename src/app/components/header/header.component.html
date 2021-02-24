@@ -23,18 +23,18 @@
             <ul class="navbar-nav ml-auto my-2 my-lg-0">
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" [routerLink]="['/quienes-somos']">¿QUIÉNES SOMOS?</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="alert('En construccion'); return false;" href="#" href="#">SERVICIOS</a></li>
-                <li class="nav-item dropdown" *ngIf="lsService.isAuthenticated()">
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="nav-label">SALAS</span><span class="caret"></span></a>
                     <ul class="dropdown-menu" style="white-space: nowrap;" aria-labelledby="navbarDropdown">
                         <li><a class="nav-link js-scroll-trigger" [routerLink]="['/recepcion']">Recepción</a></li>
-                        <li><a class="nav-link js-scroll-trigger" [routerLink]="['/directorio']">Directorio empresarial</a></li>
-                        <li><a class="nav-link js-scroll-trigger" [routerLink]="['/anfiteatro']">Anfiteatro</a></li>
-                        <li><a class="nav-link js-scroll-trigger" [routerLink]="['/rueda-negocios']">Rueda de Negocios</a></li>
+                        <li><a class="nav-link js-scroll-trigger" [routerLink]="['/directorio']" *ngIf="lsService.isAuthenticated()">Directorio empresarial</a></li>
+                        <li><a class="nav-link js-scroll-trigger" [routerLink]="['/anfiteatro']" *ngIf="lsService.isAuthenticated()">Anfiteatro</a></li>
+                        <li><a class="nav-link js-scroll-trigger" [routerLink]="['/rueda-negocios']" *ngIf="lsService.isAuthenticated()">Rueda de Negocios</a></li>
                         <!--<li><a class="nav-link js-scroll-trigger" [routerLink]="['/inicio-alterno']"> Pagina de incio (alterna) </a></li>-->
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" [routerLink]="['/contactenos']">CONTÁCTENOS</a></li>
-                <li class="nav-item" *ngIf="lsService.isAuthenticated()"><span class="nav-link js-scroll-trigger" (click)="logout()">SALIR</span></li>
+                <li class="nav-item cursor-pointer" *ngIf="lsService.isAuthenticated()"><span class="nav-link js-scroll-trigger" (click)="logout()">SALIR</span></li>
                 <li class="nav-item">
                     <app-audio [config]="{ style: 'color: rgba(48, 126, 228, 0.7);' }"></app-audio>
                 </li>

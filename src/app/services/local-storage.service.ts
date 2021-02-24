@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConamypeService } from './conamype.service';
 
 @Injectable({
   providedIn: 'root'
@@ -59,9 +60,10 @@ export class LocalStorageService {
   isAuthenticated(): boolean {
     return (this.getCurrentToken() != null) ? true : false;
   };
-
+  
   logout(): void {
     this.localStorageService.removeItem('currentUser');
     this.currentSession = null;
   }
+
 }

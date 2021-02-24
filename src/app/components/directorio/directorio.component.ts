@@ -7,6 +7,7 @@ import { ConamypeService } from 'src/app/services/conamype.service';
   selector: 'app-directorio',
   templateUrl: './directorio.component.html',
   styles: [ "* { color: #223972 }",
+  ':host { display: block;}', 
   ".titulo {  font-family: 'Lato'; }",
   ".participante {  font-family: 'Fira Sans'; }",
   ".directorio { max-height: 650px }",

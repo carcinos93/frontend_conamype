@@ -27,7 +27,7 @@
     <ng-container *ngSwitchCase="tipoRecurso.DOCUMENTOS">
         <div class="row mx-auto w-100">
             <div *ngFor="let recurso of recursos; let i=index" class="col-4 text-center">
-                <a style="color: #04235b;" target='_blank' href='{{ recurso.Link }}'> <i class="fa fa-file-archive-o fa-3x" aria-hidden="true"></i> </a>
+                <a style="color: #04235b;" target='_blank' href='{{ recurso.Objeto != null ? recurso.Objeto : recurso.Link }}'> <i class="fa fa-file-archive-o fa-3x" aria-hidden="true"></i> </a>
                 <div class="w-100">
                     {{ recurso.Nombre_Recurso_Especifico }}
                 </div>
