@@ -6,6 +6,10 @@
 }
 
 .hidden {
+    display: none !important;
+}
+
+.visibilityHidden {
     visibility: hidden !important;
 }
 
@@ -36,6 +40,10 @@ html {
 .blur {
     filter: blur(8px);
     -webkit-filter: blur(8px);
+}
+
+.marco {
+    border: 1.5rem solid #232323 !important;
 }
 
 .alerta-terminado {

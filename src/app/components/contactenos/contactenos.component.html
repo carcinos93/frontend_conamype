@@ -20,22 +20,22 @@
                         </div>
                         <div class="form-group">
                             <label>Nombre: </label>
-                            <input formControlName="Nombre" class="form-control" type="text" name="">
-                            <small class="text-danger w-100 d-block" *ngIf="controlValido('Nombre')">
+                            <input formControlName="nombre" class="form-control" type="text" name="">
+                            <small class="text-danger w-100 d-block" *ngIf="controlValido('nombre')">
                                Nombre es requerido
                              </small>
                         </div>
                         <div class="form-group">
                             <label>Dirección de correo electrónico: </label>
-                            <input formControlName="Correo" class="form-control" type="email" name="">
-                            <small class="text-danger w-100 d-block" *ngIf="controlValido('Correo')">
+                            <input formControlName="correo" class="form-control" type="email" name="">
+                            <small class="text-danger w-100 d-block" *ngIf="controlValido('correo')">
                                 Dirección de correo electrónico es requerido
                               </small>
                         </div>
                         <div class="form-group">
                             <label>Tipo de mensaje: </label>
-                            <input formControlName="tipoMensaje" class="form-control" type="text" name="">
-                            <small class="text-danger w-100 d-block" *ngIf="controlValido('tipoMensaje')">
+                            <input formControlName="tipo" class="form-control" type="text" name="">
+                            <small class="text-danger w-100 d-block" *ngIf="controlValido('tipo')">
                                 Tipo de mensaje es requerido
                               </small>
                         </div>
@@ -47,7 +47,10 @@
                               </small>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Enviar</button>
+                            <button type="submit" [disabled]="!enviarHabilitado" class="btn btn-primary">
+                                <span *ngIf="!enviarHabilitado"  class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                <span *ngIf="enviarHabilitado">Enviar</span>
+                              </button>
                         </div>
                     </form>
                 </div>

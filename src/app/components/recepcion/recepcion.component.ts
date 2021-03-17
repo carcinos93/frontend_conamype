@@ -2,8 +2,9 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConamypeService } from 'src/app/services/conamype.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { LoginComponent } from '../login/login.component';
+import { LoginComponent } from '../usuario/login/login.component';
 import { AppConfig } from '../../services/app-config.service';
+import { CanvasComponent } from '../canvas/canvas.component';
 
 @Component({
   selector: 'app-recepcion',
@@ -24,6 +25,7 @@ export class RecepcionComponent implements OnInit, AfterViewInit {
 
   idTimeout: any;
   @ViewChild(LoginComponent) login: LoginComponent;
+  @ViewChild(CanvasComponent) canvas: CanvasComponent;
   constructor(private conamypeService: ConamypeService, private route: Router, public lsService: LocalStorageService,
     public appConfig: AppConfig) { 
  
@@ -58,7 +60,14 @@ export class RecepcionComponent implements OnInit, AfterViewInit {
     }
 
   }
+
+  clickPantalla(escena) {
+      console.log(escena);
+  }
+
   canvasClick(event) {
+    console.log( event );
+    this.canvas.setParametros( { objeto: "Codigo", funcionNombre : "PlayVideo", parametros: "" } );
     /*  this.login.forzarLoginVentana();
     if (this.idTimeout != null) {
       clearTimeout( this.idTimeout );

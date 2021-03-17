@@ -14,7 +14,10 @@
             <div class="row no-gutters m-0 bg-light-gray" style="font-size: 0.9rem;">
                 <div class="col-3 participante" [ngStyle]=" { 'border-right': ( (i + 1 ) % 4.0 > 0.0 ) ? '4px solid #c0d1db' : 'none'  } " *ngFor="let participante of item.Participantes; let i = index">
                     <div class="w-100 mt-3 mb-3">
-                        <img class="rounded-circle w-25" [src]="participante.Logo_Participante" alt="">
+                        <div class="rounded-circle overflow-hidden mx-auto" style="width:65px; height:65px">
+                            <img class="h-100 w-auto" style="transform: translateX(-50%); margin-left: 50%;" [src]="participante.Logo_Participante" alt="">
+                        </div>
+
                     </div>
                     <div class="ml-2 w-100 text-break pr-1 text-center">
                         <p>{{ participante.Nombre_Participante | uppercase }}</p>

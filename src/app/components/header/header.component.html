@@ -22,7 +22,7 @@
 
             <ul class="navbar-nav ml-auto my-2 my-lg-0">
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" [routerLink]="['/quienes-somos']">¿QUIÉNES SOMOS?</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" onclick="alert('En construccion'); return false;" href="#" href="#">SERVICIOS</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" [href]="appConfig.enlaces.servicios">SERVICIOS</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="nav-label">SALAS</span><span class="caret"></span></a>
                     <ul class="dropdown-menu" style="white-space: nowrap;" aria-labelledby="navbarDropdown">
@@ -34,7 +34,14 @@
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" [routerLink]="['/contactenos']">CONTÁCTENOS</a></li>
-                <li class="nav-item cursor-pointer" *ngIf="lsService.isAuthenticated()"><span class="nav-link js-scroll-trigger" (click)="logout()">SALIR</span></li>
+                <li class="nav-item dropdown" *ngIf="lsService.isAuthenticated()">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="nav-label">USUARIO</span><span class="caret"></span></a>
+                    <ul class="dropdown-menu" style="white-space: nowrap;" aria-labelledby="navbarDropdown">
+                        <li><a class="nav-link js-scroll-trigger" [routerLink]="['/cambioPassword']" *ngIf="lsService.isAuthenticated()">Cambiar contraseña</a></li>
+                        <li class="nav-item cursor-pointer" *ngIf="lsService.isAuthenticated()"><span class="nav-link js-scroll-trigger" (click)="logout()">Salir</span></li>
+                    </ul>
+                </li>
+
                 <li class="nav-item">
                     <app-audio [config]="{ style: 'color: rgba(48, 126, 228, 0.7);' }"></app-audio>
                 </li>

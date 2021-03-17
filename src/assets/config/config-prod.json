@@ -5,13 +5,18 @@
     "participante": {
         "registrosPorPagina": "15"
     },
-    "urlChat": "http://72.167.226.188/~oqmdev/oqmchat/public/?usuario={usuario}&canal={empresa}",
+    "urlChat": {
+        "facebook": "https://m.me/{fanpage}"
+    },
     "habilitarSonido": true,
     "redes": {
         "facebook": "https://www.facebook.com/conamype.sv/",
         "twitter": "https://twitter.com/CONAMYPESV",
         "instagram": "https://www.instagram.com/conamypesv/",
         "whatapp": "https://wa.me/50370747074"
+    },
+    "enlaces": {
+        "servicios": "https://www.conamype.gob.sv/servicios-especializados-para-mype/"
     },
     "extensionObjeto": "unityweb",
     "unityObjetos": {
@@ -27,10 +32,29 @@
         "anfiteatro": "/mail_ws/api/unity/anfiteatro",
         "pabellon": "/mail_ws/api/unity/pabellon",
         "recepcion": "/mail_ws/api/unity/recepcion",
+        "fachada": "/mail_ws/api/unity/fachada",
         "estand": {
             "estand": "/mail_ws/api/estand",
             "centro_ferias_eventos": "/mail_ws/api/centroEventos"
         }
-    }
+    },
+    "recaptchaKey": "6LdfFHAaAAAAAIvUfxf6viOCpYKVzfLBp0WhNi-_",
+    "videoPlayer": [{
+            "embedMask": "youtube\\.com\\/embed\\/([\\w+\\-]*)",
+            "siteMask": "youtube.com/watch\\?v=([\\w+\\-]*)",
+            "videoEmbed": "http://www.youtube.com/embed/{VIDEO_ID}"
 
+        },
+        {
+            "embedMask": "player.vimeo.com\\/video\\/([\\w+\\-]*)",
+            "siteMask": "https://vimeo.com/([\\w+\\-]*)",
+            "videoEmbed": "https://player.vimeo.com/video/{VIDEO_ID}"
+        },
+        {
+            "embedMask": "youtube\\.com\\/embed\\/([\\w+\\-]*)",
+            "siteMask": "http://y2u.be/([\\w+\\-]*)",
+            "videoEmbed": "http://www.youtube.com/embed/{VIDEO_ID}"
+
+        }
+    ]
 }

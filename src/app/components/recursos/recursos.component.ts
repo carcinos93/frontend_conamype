@@ -10,9 +10,26 @@ import { Recurso } from 'src/app/models/recurso.model';
 export class RecursosComponent implements OnInit {
   @Input() recursos: Recurso[] = [];
   @Input() IdRecurso: string;
+
   tipoRecurso = new TipoRecurso();
-  constructor() { }
   
+  productoSeleccionado: Recurso = {}  as Recurso;
+  esProductoSeleccionado: boolean = false;
+  constructor() { }
+
+  seleccionarProducto(recurso: Recurso) {
+    this.productoSeleccionado = recurso;
+    this.esProductoSeleccionado = true;
+    console.log(recurso);
+  }
+
+  volver() {
+    console.log('volver');
+    this.esProductoSeleccionado = false;
+  }
+
+  Nombre_Recurso_Especifico
+
   ngOnInit(): void {
   }
 

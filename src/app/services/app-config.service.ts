@@ -21,10 +21,17 @@ export class AppConfig {
     return this.config.habilitarSonido;
   }
 
+  get recaptchaKey() {
+    return this.config.recaptchaKey;
+  }
+
   get redes() {
     return this.config.redes;
   }
 
+  get enlaces() {
+    return this.config.enlaces;
+  }
   get servicios() {
     return this.config.servicios;
   }
@@ -32,7 +39,7 @@ export class AppConfig {
     return this.config.unityObjetos;
   }
   public urlChat(): string {
-    return this.config.urlChat;
+    return this.config.urlChat.facebook;
   }
 
   get fecha() {
@@ -42,7 +49,9 @@ export class AppConfig {
   get extensionObjeto() {
     return this.config.extensionObjeto;
   }
-
+  get videoPlayer() {
+    return this.config.videoPlayer;
+  }
   public loadAppConfig(): any {
     const envFile = environment.production ? 'prod' : 'dev';
     var f = new Date().toISOString();
@@ -66,7 +75,9 @@ export interface Config
   participante: { 
     registrosPorPagina: string
   }
-  urlChat: string,
+  urlChat: {
+    facebook: string
+  },
   habilitarSonido: boolean,
   redes: { 
     facebook: string,
@@ -82,12 +93,24 @@ export interface Config
     ruedaNegocios: string,
     fachada: string
    },
+   enlaces: {
+     servicios: string
+   }
    servicios: { 
     base: string,
     ruedaNegocios: string,
     anfiteatro: string,
     pabellon: string,
     recepcion: string,
+    fachada: string
     estand: object
-   }
+   },
+   recaptchaKey: string,
+   videoPlayer: videoTipo[]
+}
+
+export interface videoTipo {
+  embedMask: string,
+  videoEmbed: string,
+  siteMask: string
 }

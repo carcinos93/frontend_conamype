@@ -1,9 +1,13 @@
 <app-header></app-header>
+<div id="fb-root"></div>
+<div class="fb-customerchat" attribution="setup_tool" page_id="103399431835421"></div>
 <div class="position-relative canvas-unity mx-auto">
-
-    <app-canvas [autoWidth]="false" (thenEvent)="canvasCargado($event)"></app-canvas>
+    <app-canvas (externalCallEvent)="clickPantalla($event)" [autoWidth]="false" (thenEvent)="canvasCargado($event)"></app-canvas>
+    <div class="position-absolute w-75 h-100 marco" style="left: 50%;top: 50%;transform: translate(-50%,-50%);" *ngIf="videoHabilitado">
+        <iframe style="width: 100%; height: 100%" [src]="urlVideo | urlVideo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
     <app-button (OnBtnClick)="bntAnterior($event)" [btnConfig]="{ tipo: 'anterior', classes : 'posIzquierda' }"></app-button>
-    <div class="position-absolute" style="bottom: 0; left: 0; right: 0;">
+    <div *ngIf="!videoHabilitado" class="position-absolute" style="bottom: 0; left: 0; right: 0;">
 
         <div class="container-fluid">
             <div class="row justify-content-md-center no-gutters m-0">
@@ -26,52 +30,76 @@
                                     <div><img data-logo="{{ valor.IdRecurso }}" [src]="valor.Logo" class="pl-2"></div>
                                     {{ valor.Nombre_Recurso }}
                                 </a>-->
-                                <div class="d-none" id="modalParticipante{{ i }}">
-                                    <div *ngIf="valor.IdRecurso == '1'">
-                                        <ng-template let-item let-i="index" ngFor [ngForOf]="stand.perfil">
-                                            <table class="table table-bordered table-hover" border="1">
-                                                <tr>
-                                                    <th> Empresa: </th>
-                                                    <td> {{ item.Nombre_Participante }} </td>
-                                                </tr>
 
-                                                <tr>
-                                                    <th>Teléfono:</th>
-                                                    <td>{{ item.Telefono_Contacto }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Perfil</th>
-                                                    <td>
-                                                        <span class="text-break">
-                                                            {{ item.Perfil }}
-                                                        </span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center" colspan="2">
-                                                        <a target="_blank" href="{{ item.SitioWeb }}"> <i class="fa fa-internet-explorer fa-2x" aria-hidden="true"></i> </a>
-
-                                                    </td>
-
-                                                </tr>
-                                            </table>
-                                        </ng-template>
-                                    </div>
-                                    <div *ngIf="valor.IdRecurso !== '1'">
-
-                                        <div *ngIf="valor.IdRecurso == '6'" class="row">
-                                            <div *ngFor="let item of stand.redes; let i = index" class="col-4">
-                                                <a target='_blank' [href]='item.Link'>
-                                                    <img src="{{ item.Objeto }}" class="img-fluid">
-                                                </a>
+                                <div id="modalParticipante{{ i }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <div class="h-100 w-100 text-center" style="vertical-align: middle;">
+                                                    <img id="modal-imagen" [src]="valor.Logo" class="img-fluid col-3" alt="">
+                                                    <span class="h4 modal-title" style="font-family: 'Lato';color: #04235b;">
+                                                            {{ valor.Nombre_Recurso }}
+                                                    </span>
+                                                </div>
+                                                <button style="background-image: url('./assets/img/botones_cerrar.png');background-size: contain;width: 10px;height:10px;" type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                                             </div>
-                                        </div>
-                                        <div *ngIf="valor.recursos != [] && valor.IdRecurso != '6'">
-                                            <app-recursos [recursos]="valor.recursos" [IdRecurso]="valor.IdRecurso"></app-recursos>
-                                            <!-- FIN DE IF RECURSOS -->
+
+                                            <div id="modalBody" class="modal-body">
+                                                <div>
+                                                    <div *ngIf="valor.IdRecurso == '1'">
+                                                        <ng-template let-item let-i="index" ngFor [ngForOf]="stand.perfil">
+                                                            <table class="table table-bordered table-hover" border="1">
+                                                                <tr>
+                                                                    <th> Empresa: </th>
+                                                                    <td> {{ item.Nombre_Participante }} </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th>Teléfono:</th>
+                                                                    <td>{{ item.Telefono_Contacto }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Perfil</th>
+                                                                    <td>
+                                                                        <span class="text-break">
+                                                                            {{ item.Perfil }}
+                                                                        </span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center" colspan="2">
+                                                                        <a target="_blank" href="{{ item.SitioWeb }}"> <i class="fa fa-internet-explorer fa-2x" aria-hidden="true"></i> </a>
+
+                                                                    </td>
+
+                                                                </tr>
+                                                            </table>
+                                                        </ng-template>
+                                                    </div>
+                                                    <div *ngIf="valor.IdRecurso !== '1'">
+
+                                                        <div *ngIf="valor.IdRecurso == '6'" class="row">
+                                                            <div *ngFor="let item of stand.redes; let i = index" class="col-4">
+                                                                <a target='_blank' [href]='item.Link'>
+                                                                    <img src="{{ item.Objeto }}" class="img-fluid">
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div *ngIf="valor.recursos != [] && valor.IdRecurso != '6'">
+                                                            <app-recursos [recursos]="valor.recursos" [IdRecurso]="valor.IdRecurso"></app-recursos>
+                                                            <!-- FIN DE IF RECURSOS -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--- <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                            </div>-->
                                         </div>
                                     </div>
                                 </div>
+
+
                             </div>
 
                         </div>

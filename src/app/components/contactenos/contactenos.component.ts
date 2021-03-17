@@ -10,11 +10,12 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class ContactenosComponent implements OnInit {
   formulario: FormGroup;
+  enviarHabilitado: boolean = true;
   constructor(private conamypeService: ConamypeService, public appConfig: AppConfig) {
     this.formulario = new FormGroup( {
-      Nombre: new FormControl('', Validators.required),
-      Correo: new FormControl('', [Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'), Validators.required]),
-      tipoMensaje: new FormControl('', Validators.required),
+      nombre: new FormControl('', Validators.required),
+      correo: new FormControl('', [Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'), Validators.required]),
+      tipo: new FormControl('', Validators.required),
       mensaje: new FormControl('', Validators.required)
     } );
 
@@ -22,6 +23,7 @@ export class ContactenosComponent implements OnInit {
 
    }
   enviar() {
+    this.enviarHabilitado = false;
     if (this.formulario.invalid) {
       Object.values( this.formulario.controls ).forEach(control => {
         if (control instanceof FormGroup) {
@@ -30,7 +32,17 @@ export class ContactenosComponent implements OnInit {
         control.markAsTouched();
         }
       });
+      this.enviarHabilitado = true;
     } else {
+        this.conamypeService.contactenos(  this.formulario.value  ).subscribe((data: any) => {
+              alert(data.message);
+
+        }, (err: any) => {
+          this.enviarHabilitado = true;
+          alert("Servicio no disponible");
+        }, () => {
+          this.enviarHabilitado = true;
+        } );
     }
   }
   contenido: string = "";

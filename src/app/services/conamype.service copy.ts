@@ -18,13 +18,6 @@ export class ConamypeService_e {
     this.urlService = this.appConfig.servicios.base;
   }
 
-  test() { 
-    var headers = new HttpHeaders().append('Accept','text/html').append('Content-Type', 'application/json');
-    return this.http.post( `http://localhost:10224/mail_ws/api/recuperarPassword`, '{ "correo" : "nelson.rodas1993@gmail.com" }' , { 
-      headers: headers
-    });
-  }
-
   template( nombre: string ) {
     var headers = new HttpHeaders().append('Content-Type', 'text/html');
     return this.http.get( `./assets/templates/${nombre}.template.html`, { 
@@ -128,6 +121,7 @@ export class ConamypeService_e {
     );
   }
 
+  
   registro(data: any) {
     var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
     return this.http.get( `${ this.urlService }nuevo_registro.php`, { 

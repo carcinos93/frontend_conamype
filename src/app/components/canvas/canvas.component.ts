@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, NgZone, OnDestroy, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AppConfig } from '../../services/app-config.service';
@@ -18,14 +18,24 @@ export class CanvasComponent implements OnInit, AfterViewInit, OnDestroy  {
   @Input() autoWidth: boolean = true;
   @Output() thenEvent = new EventEmitter();
   @Output() clickEvent = new EventEmitter();
+  @Output() externalCallEvent = new EventEmitter();
   @ViewChild('unityCanvas') myCanvas: ElementRef<HTMLCanvasElement>;
-
+  @Input() visible: boolean = true;
   private _unityInstance: any = null;
   public cargando: boolean = true;
-  constructor(private appConfig: AppConfig) {
-
+  constructor(private appConfig: AppConfig, private ngZone: NgZone) {
+        window["externalCall"] = function () {};
+        window["externalCall"] = this.externalCall.bind(this);
    }
+
+   public externalCall(input: string) {
+       this.ngZone.run(() => {
+            this.externalCallEvent.emit( input );
+       });
+   }
+  
   ngOnDestroy(): void {
+    window["externalCall"] = null;
     if (this._unityInstance != null) 
     {
       this._unityInstance.Quit(function() {
@@ -70,6 +80,10 @@ export class CanvasComponent implements OnInit, AfterViewInit, OnDestroy  {
     }
   }
   public cargarUnity(objeto: string, SendMessageUnity?: { objeto: string, funcionNombre: string, parametros: string }) {
+    if ( this._unityInstance != null ) {
+      this.setParametros( SendMessageUnity );
+      return;
+    }
     if (objeto != null && objeto != '')
     {
       $("#unityLoader").removeClass('d-none');

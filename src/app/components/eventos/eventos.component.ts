@@ -9,7 +9,7 @@ import { AppConfig } from '../../services/app-config.service';
   selector: 'app-eventos',
   templateUrl: './eventos.component.html',
   styles: [ 'h2 { font-family: "Lato"; color: #04235b; } ',
-  ' .marco {  border: 1.5rem solid #232323 !important; }'
+  ' '
   ],
   animations: [
     trigger('slideInOut', [

@@ -1,0 +1,26 @@
+<div id="eventos" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li *ngFor="let evento of eventos; let i = index" [class.active]="i == 0" data-target="#eventos" [attr.data-slide-to]="i"></li>
+
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item" [class.active]="i == 0" *ngFor="let evento of eventos; let i = index">
+            <div class="container">
+                <div class="carousel-caption m-0 p-0">
+                    <h5> {{ evento.EventoActual == "no" ? "Próximamente" : "" }} {{ evento.Nombre }} - {{ fechaTexto( evento ) }} </h5>
+                    <p> <small> {{ evento.TipoEvento }} </small> </p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#eventos" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#eventos" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>

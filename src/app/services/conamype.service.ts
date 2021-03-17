@@ -46,6 +46,14 @@ export class ConamypeService {
     } ) );*/
   }
 
+
+  eventosFeriasRuedaAnfiteatro() {
+    var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
+    return this.http.get( `${ this.urlService }eventosFeriasRuedaAnfiteatro`, { 
+      headers: headers
+    });
+  }
+
   directorio() {
     var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
     return this.http.get<Directorio[]>( `${ this.urlService }directorio`, { 
@@ -131,21 +139,59 @@ export class ConamypeService {
       headers: headers
     } );
   }
+
+  cambiarPassword( data: any ) {
+    var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
+    return this.http.post( `${ this.urlService }cambiarPassword` , data , { 
+      headers: headers
+    } );
+  }
+
   registro(data: any) {
     var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
     return this.http.post( `${ this.urlService }registro` , data , { 
       headers: headers
     } );
-    //this.login( username, password );
   }
-  login(username: string, password: string, recordarme: boolean = false ) {
+
+  contactenos(data: any) {
     var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
-    return this.http.post( `${ this.urlService }login`, { 'CorreoVisitante' : username, 'Password' : password }, { 
+    return this.http.post( `${ this.urlService }contactenos` , data , { 
+      headers: headers
+    } );
+  }
+
+  login(username: string, password: string, recaptcha: string , recordarme: boolean = false, passwordModificado: boolean = false ) {
+  if (!passwordModificado) {
+    let userData = this.lrService.getUserData();
+  
+    if (userData != null) {
+      return this.http.post( `${ this.urlService }loginToken`, { 'CorreoVisitante': username ,token: userData.recordarmeToken }, { 
+        headers: headers 
+      } ).pipe(
+        map( (data: any) => {
+            if (data.success) {
+              userData.token = data.token;
+              this.lrService.setCurrentSession(userData , recordarme );
+              this.lrService.loadSessionData();
+              this.isAuthenticate = true;
+            } else {
+              this.lrService.deleteUserData();
+            }
+  
+            return data;
+        })
+      );
+
+    }
+  } else {
+    var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
+    return this.http.post( `${ this.urlService }login`, { 'CorreoVisitante' : username, 'Password' : password, 'Recaptcha' : recaptcha, 'Recordarme' :  recordarme }, { 
       headers: headers 
     } ).pipe(
       map( (data: any) => {
           if (data.success) {
-            this.lrService.setCurrentSession( { username: username, password: password , token: data.token  }, recordarme );
+            this.lrService.setCurrentSession( { username: username, token: data.token, recordarmeToken: data.recordarmeToken  }, recordarme );
             this.lrService.loadSessionData();
             this.isAuthenticate = true;
           }
@@ -153,6 +199,10 @@ export class ConamypeService {
           return data;
       })
     );
+  }
+  
+
+
 
 
 

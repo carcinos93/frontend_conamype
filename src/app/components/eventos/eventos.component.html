@@ -26,7 +26,7 @@
                                     <tr *ngFor="let evento of eventos; let i=index" class="animated fadeInUp" [ngClass]="{ 'alerta-terminado' : evento.Status == 'terminado' && tipo == 'ANFITEATRO' }">
                                         <td> {{ evento.Fecha_Inicio_Evento | date:'dd/MM/yyyy' }} </td>
                                         <td> {{ evento.Fecha_Inicio_Evento | date:'hh:mm a' }} </td>
-                                        <td (click)="mostrarInformacion(evento)"> {{ evento.Nombre_Evento }} </td>
+                                        <td (click)="mostrarInformacion(evento)"> <span class="cursor-pointer"> <u> {{ evento.Nombre_Evento }} </u>  </span> </td>
                                         <td> {{ evento.Organizador }} </td>
                                         <td>
                                             <i [ngClass]="{ 

@@ -5,7 +5,9 @@
     "participante": {
         "registrosPorPagina": "15"
     },
-    "urlChat": "http://72.167.226.188/~oqmdev/oqmchat/public/?usuario={usuario}&canal={empresa}",
+    "urlChat": {
+        "facebook": "https://m.me/{fanpage}"
+    },
     "habilitarSonido": false,
     "redes": {
         "facebook": "https://www.facebook.com/conamype.sv/",
@@ -13,19 +15,47 @@
         "instagram": "https://www.instagram.com/conamypesv/",
         "whatapp": "https://wa.me/50370747074"
     },
+    "enlaces": {
+        "servicios": "https://www.conamype.gob.sv/servicios-especializados-para-mype/"
+    },
     "extensionObjeto": "unityweb",
     "unityObjetos": {
-        "pabellon": "pabellon",
-        "recepcion": "recepcion",
-        "anfiteatro": "anfiteatro",
+        "pabellon": "Pabellon",
+        "recepcion": "Recepcion",
+        "anfiteatro": "Anfiteatro",
         "ruedaNegocios": "Rueda",
-        "fachada": "fachada"
+        "fachada": "Fachada"
     },
     "servicios": {
         "base": "http://localhost:10224/mail_ws/api/",
         "ruedaNegocios": "http://localhost:10224/mail_ws/api/unity/ruedaNegocios",
         "anfiteatro": "http://localhost:10224/mail_ws/api/unity/anfiteatro",
         "pabellon": "http://localhost:10224/mail_ws/api/unity/pabellon",
-        "recepcion": "http://localhost:10224/mail_ws/api/unity/recepcion"
-    }
+        "recepcion": "http://localhost:10224/mail_ws/api/unity/recepcion",
+        "fachada": "http://localhost:10224/mail_ws/api/unity/fachada",
+        "estand": {
+            "estand": "http://localhost:10224/mail_ws/api/estand",
+            "centro_ferias_eventos": "http://localhost:10224/mail_ws/api/centroEventos"
+        }
+    },
+    "recaptchaKey": "6LdfFHAaAAAAAIvUfxf6viOCpYKVzfLBp0WhNi-_",
+    "videoPlayer": [{
+            "embedMask": "youtube\\.com\\/embed\\/([\\w+\\-]*)",
+            "siteMask": "youtube.com/watch\\?v=([\\w+\\-]*)",
+            "videoEmbed": "https://www.youtube.com/embed/{VIDEO_ID}"
+
+        },
+        {
+            "embedMask": "player.vimeo.com\\/video\\/([\\w+\\-]*)",
+            "siteMask": "https://vimeo.com/([\\w+\\-]*)",
+            "videoEmbed": "https://player.vimeo.com/video/{VIDEO_ID}"
+        },
+        {
+            "embedMask": "youtube\\.com\\/embed\\/([\\w+\\-]*)",
+            "siteMask": "http://y2u.be/([\\w+\\-]*)",
+            "videoEmbed": "https://www.youtube.com/embed/{VIDEO_ID}"
+
+        }
+    ]
+
 }

@@ -2,7 +2,7 @@
 <!--<app-button [btnConfig]="{ tipo : 'anterior', classes: [  ], container : '#mainNav .container' , routerLink: ['/inicio'] }"></app-button>-->
 <div class="position-relative canvas-unity mx-auto">
 
-    <app-canvas (clickEvent)="canvasClick($event)" [autoWidth]="false" [unityObjeto]="appConfig.unityObjeto.recepcion" (thenEvent)="canvasCargado($event)"></app-canvas>
+    <app-canvas (externalCallEvent)="clickPantalla($event)" (clickEvent)="canvasClick($event)" [autoWidth]="false" [unityObjeto]="appConfig.unityObjeto.recepcion" (thenEvent)="canvasCargado($event)"></app-canvas>
     <app-login (afterLogin)="afterLogin()" [timeShow]="5" [right]="'0'" [top]="'0'"></app-login>
     <div *ngIf="lsService.isAuthenticated()" class="escalaGris col-3 p-0" style="position: absolute;bottom: 0; left: 0;">
         <div class="row no-gutters m-0">

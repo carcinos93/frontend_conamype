@@ -40,6 +40,9 @@ export class LocalStorageService {
     var userData = this.localStorageService.getItem('userData');
     return (userData) ? JSON.parse(userData) : null;
   }
+  deleteUserData(): void {
+    this.localStorageService.removeItem('userData');
+  }
   setCurrentSession(session, rememberMe: boolean = false): void {
     /*if (rememberMe)
     {
@@ -48,11 +51,12 @@ export class LocalStorageService {
       this.localStorageService = sessionStorage;
     }*/
     this.currentSession = session;
+    session.recordar = rememberMe;
     if (rememberMe) {
-      session.recordar = rememberMe;
       this.localStorageService.setItem('userData', JSON.stringify(session));
     } else {
-      this.localStorageService.removeItem('userData');
+      delete session.recordarmeToken;
+      this.deleteUserData();
     }
     this.localStorageService.setItem('currentUser', JSON.stringify(session));
   }

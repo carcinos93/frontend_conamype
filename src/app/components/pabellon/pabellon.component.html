@@ -1,11 +1,11 @@
 <app-header [habilitarBusqueda]="participantesActivo" (OnBuscar)="buscarPabellon($event)"></app-header>
 
 <!--<app-button (OnBtnClick)="bntAnterior($event)" [btnConfig]="{ tipo : 'anterior', classes: [ ], container : '#mainNav .container' }"></app-button>-->
-
-<div class="position-relative canvas-unity mx-auto">
-    <app-canvas [unityObjeto]="appConfig.unityObjeto.pabellon" [autoWidth]="false" (thenEvent)="canvasCargado($event)"></app-canvas>
+<div class="position-relative canvas-unity mx-auto" *ngIf="pabellonesActivo">
+    <div class="w-100 text-center" style="z-index: 1;">
+        <img src="./assets/img/PROPUESTA-1.png" alt="" class="img-fluid">
+    </div>
     <app-button (OnBtnClick)="bntAnterior($event)" [btnConfig]="{ tipo: 'anterior', classes : 'posIzquierda' }"></app-button>
-
     <div class="container pabellon-contenedor pl-5 pr-5 h-100 d-flex" *ngIf="pabellonesActivo">
         <div class="row w-100 pl-5 pr-5 align-content-center">
             <div class="col-12">
@@ -29,12 +29,21 @@
             </div>
         </div>
     </div>
+</div>
+<div class="row" *ngIf="pabellonesActivo">
+    <div class="col-8 mx-auto">
+        <app-paginacion [totalPaginas]="pabellonTotalPaginas" [config]="{ class:  'd-flex align-content-center', siguienteTexto: 'Pabellón siguiente', anteriorTexto: 'Pabellón anterior' }" [paginaActual]="paginaPabellon" (OnPagina)="onPaginaPabellon($event)"></app-paginacion>
+    </div>
+</div>
+<div class="position-relative canvas-unity mx-auto" id="participantesContenedor" [class.visibilityHidden]="!participantesActivo">
+    <app-canvas [unityObjeto]="appConfig.unityObjeto.pabellon" [autoWidth]="false" (thenEvent)="canvasCargado($event)"></app-canvas>
 
-    <div class="container pabellon-contenedor pl-5 pr-5 h-100 d-flex " *ngIf="participantesActivo">
+    <app-button (OnBtnClick)="bntAnterior($event)" [btnConfig]="{ tipo: 'anterior', classes : 'posIzquierda' }"></app-button>
+    <div class="container pabellon-contenedor pl-5 pr-5 h-100 d-flex ">
         <div class="row w-100 align-content-center">
             <div class="col-12">
                 <div class="container">
-                    <div class="row w-100 mx-auto pl-2 pr-2" style="background-color: rgba(255, 255, 255, 0.493);" [@listAnimation]="participantes.length" *ngIf="participantes.length > 0">
+                    <div class="row w-100 mx-auto pl-2 pr-2" style="background-color: rgba(196, 192, 192, 0.75)" [@listAnimation]="participantes.length" *ngIf="participantes.length > 0">
                         <ng-template let-item let-i="index" ngFor [ngForOf]="participantes">
                             <div class="col-2 text-center">
                                 <div class="mt-4">
@@ -48,12 +57,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-</div>
-<div class="row" *ngIf="pabellonesActivo">
-    <div class="col-8 mx-auto">
-        <app-paginacion [totalPaginas]="pabellonTotalPaginas" [config]="{ class:  'd-flex align-content-center', siguienteTexto: 'Pabellón siguiente', anteriorTexto: 'Pabellón anterior' }" [paginaActual]="paginaPabellon" (OnPagina)="onPaginaPabellon($event)"></app-paginacion>
     </div>
 </div>
 <div class="row" *ngIf="participantesActivo">

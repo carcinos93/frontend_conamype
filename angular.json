@@ -21,8 +21,7 @@
                         "aot": false,
                         "assets": [
                             "src/favicon.ico",
-                            "src/assets",
-                            "src/unity-conf"
+                            "src/assets"
                         ],
                         "styles": [
                             "src/css/_styles.css",
@@ -31,7 +30,6 @@
                             "src/css/animate.min.css",
                             "src/css/carousel.css",
                             "src/css/normalize.min.css",
-
                             "src/css/font-awesome.css",
                             "src/css/stylesheet.css"
                         ],
@@ -78,7 +76,9 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "frontend-conamype:build"
+                        "browserTarget": "frontend-conamype:build",
+                        "sslKey": "C:\\Users\\Nelson\\Documents\\UniServerZ\\core\\apache2\\server_certs\\server.key",
+                        "sslCert": "C:\\Users\\Nelson\\Documents\\UniServerZ\\core\\apache2\\server_certs\\server.crt"
                     },
                     "configurations": {
                         "production": {

@@ -19,6 +19,8 @@ export class InicioComponent implements OnInit {
   }
 
   canvasCargado(unityInstance) {
+    unityInstance.SendMessage('Codigo','ImagenDb', this.appConfig.servicios.fachada);
+
     $("#btnEntrar").removeClass('hidden');
    /* setTimeout( ()=> {
       this.redirect();

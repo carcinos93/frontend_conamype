@@ -1,2 +1,2 @@
 <app-loading [cargando]="cargando"></app-loading>
-<canvas (click)="eventClick($event)" #unityCanvas class="mx-auto d-block" [style]="'background: #231F20;'"></canvas>
+<canvas (click)="eventClick($event)" [class.hidden]="!visible" #unityCanvas class="mx-auto" [style]="'background: #231F20; display: block'"></canvas>

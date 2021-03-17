@@ -1,4 +1,6 @@
 import { BrowserModule, } from '@angular/platform-browser';
+import { LOCALE_ID } from '@angular/core';
+import es from '@angular/common/locales/es';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { RouterModule   } from '@angular/router';
@@ -9,7 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { CanvasComponent } from './components/canvas/canvas.component';
 import { RecepcionComponent } from './components/recepcion/recepcion.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/usuario/login/login.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { PabellonComponent } from './components/pabellon/pabellon.component';
 import { StandComponent } from './components/stand/stand.component';
@@ -18,7 +20,7 @@ import { RuedaNegociosComponent } from './components/rueda-negocios/rueda-negoci
 import { ButtonComponent } from './components/controles/button/button.component';
 import { ImagenButtonComponent } from './components/controles/imagen-button/imagen-button.component';
 import { DirectorioComponent } from './components/directorio/directorio.component';
-import { RegistroComponent } from './components/registro/registro.component';
+import { RegistroComponent } from './components/usuario/registro/registro.component';
 import { EventosComponent } from './components/eventos/eventos.component';
 import { AudioComponent } from './components/controles/audio/audio.component';
 import { BienvenidoComponent } from './components/bienvenido/bienvenido.component';
@@ -30,13 +32,20 @@ import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
 import { ContactenosComponent } from './components/contactenos/contactenos.component';
 import { QuienesSomosComponent } from './components/quienes-somos/quienes-somos.component';
 import { AuditoriaInterceptorService } from './services/auditoria-interceptor.service';
-import { RecuperarPasswordComponent } from './components/recuperar-password/recuperar-password.component';
+import { RecuperarPasswordComponent } from './components/usuario/recuperar-password/recuperar-password.component';
 import { LoadingComponent } from './components/controles/loading/loading.component';
+import { EventoActualesFuturosComponent } from './components/evento-actuales-futuros/evento-actuales-futuros.component';
+import { registerLocaleData } from '@angular/common';
+import { UrlVideoPipe } from './pipes/url-video.pipe';
+import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
+import { CambioPasswordComponent } from './components/usuario/cambio-password/cambio-password.component';
+import { FacebookModule } from 'ngx-facebook';
 const appInitializerFn = (appConfig: AppConfig) => {
   return () => {
     return appConfig.loadAppConfig();
   };
 };
+registerLocaleData(es);
 
 @NgModule({
   declarations: [
@@ -64,7 +73,10 @@ const appInitializerFn = (appConfig: AppConfig) => {
     ContactenosComponent,
     QuienesSomosComponent,
     RecuperarPasswordComponent,
-    LoadingComponent
+    LoadingComponent,
+    EventoActualesFuturosComponent,
+    UrlVideoPipe,
+    CambioPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -72,9 +84,15 @@ const appInitializerFn = (appConfig: AppConfig) => {
     RouterModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
+    FacebookModule.forRoot()
   ],
-  providers: [ AppConfig, 
+  providers: [ AppConfig,
+    {
+       provide: LOCALE_ID, useValue: "es-*"
+    },
   {
     provide: APP_INITIALIZER,
     useFactory: appInitializerFn,

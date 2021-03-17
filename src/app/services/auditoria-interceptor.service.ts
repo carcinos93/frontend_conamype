@@ -39,6 +39,7 @@ export class AuditoriaInterceptorService implements HttpInterceptor {
     return next.handle(request).pipe( catchError((err: HttpErrorResponse) => {
       console.log(err);
       if (err.status === 401) {
+          alert('Tiempo se sesión agotado, inicia nuevamente sesión');
           this.ls.logout();
           this.router.navigateByUrl('/recepcion');
       }

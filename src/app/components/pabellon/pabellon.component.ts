@@ -43,6 +43,7 @@ export class PabellonComponent implements OnInit {
   participanteTotalPaginas: number = 1;
   ngOnInit(): void {
     this.selectedFeria = this.activatedRoute.snapshot.paramMap.get('idFeria');
+    //this.canvasCargado(null);
       /*this.conamypeService.stand('1','1').subscribe( (e) => {
         console.log(e);
       } )*/
@@ -53,19 +54,21 @@ export class PabellonComponent implements OnInit {
       this.pabellonesActivo = true;
       this.participantesActivo = false;
       setTimeout(() => {
+        $("#participantesContenedor").addClass('hidden');
           this.pabellones = e.data ?? [];
           this.pabellonTotalPaginas = e.total_paginas ?? 1;
-      }, 6000);
+      }, 4500);
       });
   }
   seleccionarPabellon_Participantes(idpabellon) {
       this.participantes = [];
       this.conamypeService.participantes( idpabellon ).subscribe((e: any) => {
       this.selectedPabellon = idpabellon;  
-
       this.pabellonesActivo = false;
       this.participantesActivo = true;
+ 
       setTimeout(() => {
+        $("#participantesContenedor").removeClass('hidden');
         this.participantes = e.data ?? [];
         this.participanteTotalPaginas = e.total_paginas ?? 1;
         }, 1500);
@@ -78,7 +81,6 @@ export class PabellonComponent implements OnInit {
     instance.SendMessage('Codigo','FocusCanvas', '0');
     let idPabellon = this.activatedRoute.snapshot.paramMap.get('idPabellon');
     let idFeria = this.activatedRoute.snapshot.paramMap.get('idFeria');
-
     if (idPabellon != null) {
         this.seleccionarPabellon_Participantes( idPabellon );
     } else {

@@ -22,7 +22,7 @@ import { LocalStorageService } from './services/local-storage.service';
       query(':enter', 
           [
               style({ opacity: 0 }),
-              animate('0.7s', style({ opacity: 1 }))
+              animate('1s', style({ opacity: 1 }))
           ], 
           { optional: true }
       )
