@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {
 
-    if (this.appConfig.habilitarSonido) {
+    if (this.appConfig.audio.habilitarSonido) {
       var audio = document.getElementById("audioBackground") as HTMLAudioElement;
       audio.loop=true;
       audio.play();

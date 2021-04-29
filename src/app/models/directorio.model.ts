@@ -4,7 +4,8 @@ export interface Directorio {
     Logo_Participante: string;
     Nombre_Contacto: string;
     Correo_Electronico: string;
-    Pabellones: string[];
-    Nombre_Pabellon: string;
+    Pabellones?: string[];
+    Nombre_Pabellon?: string;
+    Perfil?: string;
 }
 

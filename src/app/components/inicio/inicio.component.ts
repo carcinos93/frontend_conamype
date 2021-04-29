@@ -20,11 +20,11 @@ export class InicioComponent implements OnInit {
 
   canvasCargado(unityInstance) {
     unityInstance.SendMessage('Codigo','ImagenDb', this.appConfig.servicios.fachada);
-
+    let tiempo = this.appConfig.transaccion.inicio * 1000;
     $("#btnEntrar").removeClass('hidden');
-   /* setTimeout( ()=> {
+    setTimeout( ()=> {
       this.redirect();
-    }, 40 * 1000 );*/
+    },  tiempo);
   }
 
 

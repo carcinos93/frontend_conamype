@@ -1,0 +1,20 @@
+<h2 mat-dialog-title> {{ eventoSeleccionado.Nombre_Evento }} </h2>
+<mat-dialog-content>
+    <p class="small font-italic text-muted">Publicado en: {{ eventoSeleccionado.Fecha_Creacion |date:'dd/MM/yyyy hh:mm aa' }} </p>
+
+    <p>Inicio evento: <span class="font-weight-bold">{{ eventoSeleccionado.Fecha_Inicio_Evento |date:'dd/MM/yyyy hh:mm aa' }}</span> </p>
+    <p>Fin evento: <span class="font-weight-bold"> {{ eventoSeleccionado.Fecha_Fin_Evento |date:'dd/MM/yyyy hh:mm aa' }}</span> </p>
+    <p> Organizado por: <span class="font-weight-bold"> {{ eventoSeleccionado.Organizador }} </span> </p>
+    <p> Contacto organizador: <span class="font-weight-bold"> {{ eventoSeleccionado.Contacto_Organizador }} </span> </p>
+    <p> Contacto correo: <span class="font-weight-bold"> {{ eventoSeleccionado.Correo_Organizador }} </span> </p>
+    <img src="{{ eventoSeleccionado.Imagen_Evento }}" class="img-fluid" alt="">
+    <p>
+        <b>Perfil</b>: {{ eventoSeleccionado.Perfil }}
+    </p>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button class="btn-danger btn" mat-button mat-dialog-close>Cerrar <br/> &nbsp; </button>
+    <button *ngIf="tipo == 'RUEDA'" (click)="abrirFormulario('organizador' ,{ 'nombreContacto': eventoSeleccionado.Contacto_Organizador , 
+    'correoContacto' : eventoSeleccionado.Correo_Organizador } )" type="button" class="float-left ml-2 mt-2 btn btn-success" aria-hidden="true"> Agendar cita <br/> 
+        con contacto de la rueda </button>
+</mat-dialog-actions>

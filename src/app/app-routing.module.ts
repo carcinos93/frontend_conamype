@@ -14,6 +14,7 @@ import { QuienesSomosComponent } from './components/quienes-somos/quienes-somos.
 import { RecuperarPasswordComponent } from './components/usuario/recuperar-password/recuperar-password.component';
 import { EventoActualesFuturosComponent } from './components/evento-actuales-futuros/evento-actuales-futuros.component';
 import { CambioPasswordComponent } from './components/usuario/cambio-password/cambio-password.component';
+import { ConfirmarComponent } from './components/confirmar/confirmar.component';
 
 const routes: Routes = [
   { path: 'recepcion', component: RecepcionComponent, data: { page: 'recepcion' }  },
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'recuperarPassword', component: RecuperarPasswordComponent, data: { page: 'recuperarPassword' }  },
   { path: 'cambioPassword', component: CambioPasswordComponent, data: { page: 'cambioPassword' }  },
   { path: 'eventosActuales', component: EventoActualesFuturosComponent, data: { page: 'eventosActuales' }  },
+  { path: 'confirmar/:token_confirm', component: ConfirmarComponent, data: { page: 'confirmar' }  },
   { path: '**', pathMatch: 'full', redirectTo: 'bienvenido' },
 ];
 

@@ -1,0 +1,12 @@
+<app-header></app-header>
+
+<div class="row mt-5">
+    <div class="col-12 text-center">
+        <h3 [ngClass]="{ 'text-danger' :  !estado, 'text-succes': estado }" *ngIf="mensaje != '' "> {{ mensaje }} </h3>
+    </div>
+    <div class="mt-3 col-12 text-center">
+        <button [routerLink]="['/recepcion']" class="btn btn-primary">
+                    Regresar a recepción
+                </button>
+    </div>
+</div>

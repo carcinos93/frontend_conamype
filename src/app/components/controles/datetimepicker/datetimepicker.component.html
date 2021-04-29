@@ -1,0 +1,17 @@
+<div class="form-inline">
+    <input class="form-control" formControlName="fecha1" [matDatepicker]="fechaPicker">
+    <mat-datepicker-toggle [for]="fechaPicker"></mat-datepicker-toggle>
+    <mat-datepicker #fechaPicker></mat-datepicker>
+
+
+    <input class="form-control " [ngxTimepicker]="hora">
+    <ngx-material-timepicker-toggle [for]="hora"></ngx-material-timepicker-toggle>
+    <ngx-material-timepicker [confirmBtnTmpl]="ok" [cancelBtnTmpl]="cancelar" #hora></ngx-material-timepicker>
+
+</div>
+<ng-template #ok>
+    <button class="btn btn-primary"> Aceptar </button>
+</ng-template>
+<ng-template #cancelar>
+    <button class="btn btn-primary mr-3"> Cancelar </button>
+</ng-template>

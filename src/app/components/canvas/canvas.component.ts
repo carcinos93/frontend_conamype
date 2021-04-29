@@ -87,7 +87,7 @@ export class CanvasComponent implements OnInit, AfterViewInit, OnDestroy  {
     if (objeto != null && objeto != '')
     {
       $("#unityLoader").removeClass('d-none');
-       var version = environment.unityVersion;
+       var version = this.appConfig.unityVersion; //environment.unityVersion;
        var extension = this.appConfig.extensionObjeto == "" ? "" : "." + this.appConfig.extensionObjeto;
       window['createUnityInstance'](this.myCanvas.nativeElement, {
         dataUrl: `./assets/Build/${objeto}.data${extension}?version=${version}`,
@@ -110,6 +110,8 @@ export class CanvasComponent implements OnInit, AfterViewInit, OnDestroy  {
           }
          
           this.thenEvent.emit( unityInstance );
+      }).catch(( err ) => {
+        console.log( err );
       });
     }
   }

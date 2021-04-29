@@ -1,9 +1,9 @@
 <app-header [habilitarBusqueda]="participantesActivo" (OnBuscar)="buscarPabellon($event)"></app-header>
-
+<app-loading [cargando]="cargando"></app-loading>
 <!--<app-button (OnBtnClick)="bntAnterior($event)" [btnConfig]="{ tipo : 'anterior', classes: [ ], container : '#mainNav .container' }"></app-button>-->
 <div class="position-relative canvas-unity mx-auto" *ngIf="pabellonesActivo">
     <div class="w-100 text-center" style="z-index: 1;">
-        <img src="./assets/img/PROPUESTA-1.png" alt="" class="img-fluid">
+        <img src="./assets/img/Fachadav2+altav6.jpg" alt="" class="img-fluid">
     </div>
     <app-button (OnBtnClick)="bntAnterior($event)" [btnConfig]="{ tipo: 'anterior', classes : 'posIzquierda' }"></app-button>
     <div class="container pabellon-contenedor pl-5 pr-5 h-100 d-flex" *ngIf="pabellonesActivo">

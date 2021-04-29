@@ -8,6 +8,10 @@
     "urlChat": {
         "facebook": "https://m.me/{fanpage}"
     },
+    "audio": {
+        "habilitarSonido": false,
+        "ruta": "assets/audios/Broken - Patrick Patrikios.mp3"
+    },
     "habilitarSonido": false,
     "redes": {
         "facebook": "https://www.facebook.com/conamype.sv/",
@@ -18,6 +22,10 @@
     "enlaces": {
         "servicios": "https://www.conamype.gob.sv/servicios-especializados-para-mype/"
     },
+    "transaccion": {
+        "inicio": 5,
+        "bienvenido": 5
+    },
     "extensionObjeto": "unityweb",
     "unityObjetos": {
         "pabellon": "Pabellon",
@@ -26,6 +34,7 @@
         "ruedaNegocios": "Rueda",
         "fachada": "Fachada"
     },
+    "unityVersion": "d1.0.19",
     "servicios": {
         "base": "http://localhost:10224/mail_ws/api/",
         "ruedaNegocios": "http://localhost:10224/mail_ws/api/unity/ruedaNegocios",

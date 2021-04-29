@@ -10,6 +10,7 @@ import { ConamypeService } from 'src/app/services/conamype.service';
 })
 export class RegistroComponent implements OnInit {
   formulario: FormGroup;
+  enviarHabilitado: boolean = true;
   constructor(private conamypeService: ConamypeService, private route: Router, private fb: FormBuilder) {
     this.formulario = this.fb.group({
       CorreoVisitante: ['', [Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'), Validators.required] ],
@@ -54,6 +55,7 @@ export class RegistroComponent implements OnInit {
   }
 
   registro() {
+    this.enviarHabilitado = false;
     if (this.formulario.invalid) {
       Object.values( this.formulario.controls ).forEach(control => {
         if (control instanceof FormGroup) {
@@ -62,6 +64,7 @@ export class RegistroComponent implements OnInit {
         control.markAsTouched();
         }
       });
+      this.enviarHabilitado = true;
     } else {
       this.conamypeService.registro(this.formulario.value).subscribe((data: any) => {
          if (data.success) {
@@ -70,7 +73,12 @@ export class RegistroComponent implements OnInit {
          } else {
           alert(data.message);
          }
-      });
+      }, (err: any) => {
+        this.enviarHabilitado = true;
+        alert("Servicio no disponible");
+      }, () => {
+        this.enviarHabilitado = true;
+      } );
       //this.route.navigate(['/recepcion']);
     }
 

@@ -17,8 +17,8 @@ export class AppConfig {
     return this.config.participante.registrosPorPagina;   
   }
 
-  get habilitarSonido(): boolean {
-    return this.config.habilitarSonido;
+  get audio() {
+    return this.config.audio;
   }
 
   get recaptchaKey() {
@@ -41,7 +41,9 @@ export class AppConfig {
   public urlChat(): string {
     return this.config.urlChat.facebook;
   }
-
+  get unityVersion() {
+    return this.config.unityVersion;
+  }
   get fecha() {
     return new Date();
   }
@@ -51,6 +53,10 @@ export class AppConfig {
   }
   get videoPlayer() {
     return this.config.videoPlayer;
+  }
+
+  get transaccion() {
+    return this.config.transaccion;
   }
   public loadAppConfig(): any {
     const envFile = environment.production ? 'prod' : 'dev';
@@ -78,7 +84,10 @@ export interface Config
   urlChat: {
     facebook: string
   },
-  habilitarSonido: boolean,
+  audio : { 
+    habilitarSonido: boolean,
+    ruta: string
+  },
   redes: { 
     facebook: string,
     twitter: string,
@@ -96,6 +105,7 @@ export interface Config
    enlaces: {
      servicios: string
    }
+   unityVersion: string,
    servicios: { 
     base: string,
     ruedaNegocios: string,
@@ -105,6 +115,10 @@ export interface Config
     fachada: string
     estand: object
    },
+   transaccion : {
+     inicio: number,
+     bienvenido: number
+   }
    recaptchaKey: string,
    videoPlayer: videoTipo[]
 }

@@ -22,7 +22,6 @@ import { CanvasComponent } from '../canvas/canvas.component';
   ]
 })
 export class RecepcionComponent implements OnInit, AfterViewInit {
-
   idTimeout: any;
   @ViewChild(LoginComponent) login: LoginComponent;
   @ViewChild(CanvasComponent) canvas: CanvasComponent;
@@ -38,7 +37,6 @@ export class RecepcionComponent implements OnInit, AfterViewInit {
 
   ferias = [];
   ngOnInit(): void {
- 
     if (this.lsService.isAuthenticated()) {
       this.conamypeService.ferias().subscribe((res: any) => {
         this.ferias = res;
@@ -51,6 +49,7 @@ export class RecepcionComponent implements OnInit, AfterViewInit {
   }
 
   collapse(id: string, idIconoEstado) {
+
     if ($("#"  +id ).hasClass('show')) {
       $("#"  + idIconoEstado).removeClass("abajo").addClass("arriba");
       $("#"  +id )['collapse']('hide');
@@ -58,7 +57,7 @@ export class RecepcionComponent implements OnInit, AfterViewInit {
       $("#"  +id )['collapse']('show');
       $("#"  + idIconoEstado).removeClass("arriba").addClass("abajo");
     }
-
+ 
   }
 
   clickPantalla(escena) {

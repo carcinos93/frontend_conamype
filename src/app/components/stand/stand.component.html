@@ -1,14 +1,17 @@
 <app-header></app-header>
-<div id="fb-root"></div>
-<div class="fb-customerchat" attribution="setup_tool" page_id="103399431835421"></div>
+<div id="chat"></div>
+
 <div class="position-relative canvas-unity mx-auto">
     <app-canvas (externalCallEvent)="clickPantalla($event)" [autoWidth]="false" (thenEvent)="canvasCargado($event)"></app-canvas>
-    <div class="position-absolute w-75 h-100 marco" style="left: 50%;top: 50%;transform: translate(-50%,-50%);" *ngIf="videoHabilitado">
-        <iframe style="width: 100%; height: 100%" [src]="urlVideo | urlVideo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="position-absolute w-100 h-100 bg-white" style="left: 50%;top: 50%;transform: translate(-50%,-50%);" *ngIf="videoHabilitado">
+        <div class="w-100 h-100 marco mx-auto position-relative">
+            <button (click)="cerrarVideo()" style="background-image: url('./assets/img/botones_cerrar.png');background-size: contain;width: 40px;height:40px; top: 0%; right: 0%" type="button" class="close position-absolute"></button>
+            <iframe style="width: 100%; height: 100%" [src]="urlVideo | urlVideo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
     </div>
+
     <app-button (OnBtnClick)="bntAnterior($event)" [btnConfig]="{ tipo: 'anterior', classes : 'posIzquierda' }"></app-button>
     <div *ngIf="!videoHabilitado" class="position-absolute" style="bottom: 0; left: 0; right: 0;">
-
         <div class="container-fluid">
             <div class="row justify-content-md-center no-gutters m-0">
                 <div [ngClass]="{ 'col-6' : 6 >= stand.data.length, 'col-8' : stand.data.length > 6  }" class="bg-white-transparent p-0 mx-auto" style="border-radius: 33px 33px 0 0;">

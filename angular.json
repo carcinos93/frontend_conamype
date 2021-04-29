@@ -24,14 +24,15 @@
                             "src/assets"
                         ],
                         "styles": [
+                            "src/custom-theme.scss",
                             "src/css/_styles.css",
                             "src/styles.css",
                             "src/css/app.css",
                             "src/css/animate.min.css",
-                            "src/css/carousel.css",
                             "src/css/normalize.min.css",
                             "src/css/font-awesome.css",
-                            "src/css/stylesheet.css"
+                            "src/css/stylesheet.css",
+                            "src/css/carousel.css"
                         ],
                         "scripts": [
                             "src/js/jquery.min.js",

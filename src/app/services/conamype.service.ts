@@ -18,12 +18,7 @@ export class ConamypeService {
     this.urlService = this.appConfig.servicios.base;
   }
 
-  test() { 
-    var headers = new HttpHeaders().append('Accept','text/html').append('Content-Type', 'application/json');
-    return this.http.post( `http://localhost:10224/mail_ws/api/recuperarPassword`, '{ "correo" : "nelson.rodas1993@gmail.com" }' , { 
-      headers: headers
-    });
-  }
+
 
   template( nombre: string ) {
     var headers = new HttpHeaders().append('Content-Type', 'text/html');
@@ -57,6 +52,13 @@ export class ConamypeService {
   directorio() {
     var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
     return this.http.get<Directorio[]>( `${ this.urlService }directorio`, { 
+      headers: headers
+    });
+  }
+
+  empresas() {
+    var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
+    return this.http.get<Directorio[]>( `${ this.urlService }empresas`, { 
       headers: headers
     });
   }
@@ -161,6 +163,20 @@ export class ConamypeService {
     } );
   }
 
+  contactoEmpresa(data: any) {
+    var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
+    return this.http.post( `${ this.urlService }contactoEmpresa` , data , { 
+      headers: headers
+    } );
+  }
+
+  vistaPreviaCorreoEmpresa(data: any) {
+    var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json');
+    return this.http.post( `${ this.urlService }previewEmpresaCorreo` , data , { 
+      headers: headers
+    } );
+  }
+
   login(username: string, password: string, recaptcha: string , recordarme: boolean = false, passwordModificado: boolean = false ) {
   if (!passwordModificado) {
     let userData = this.lrService.getUserData();
@@ -201,10 +217,13 @@ export class ConamypeService {
     );
   }
   
+  }
 
-
-
-
+  validarRegistro( token: string ) {
+    var headers = new HttpHeaders().append('Accept','application/json').append('Content-Type', 'application/json').append('skip','');
+    return this.http.post( `${ this.urlService }validarRegistro`, { "token_confirm" : token } , { 
+      headers: headers 
+    } );
 
   }
 

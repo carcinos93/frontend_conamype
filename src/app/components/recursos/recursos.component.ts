@@ -24,7 +24,6 @@ export class RecursosComponent implements OnInit {
   }
 
   volver() {
-    console.log('volver');
     this.esProductoSeleccionado = false;
   }
 

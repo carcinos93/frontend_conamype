@@ -1,9 +1,13 @@
 import { trigger, state, stagger, style, transition, animate } from '@angular/animations';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef, ViewContainerRef } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Evento } from 'src/app/models/evento.model';
 import { ConamypeService } from 'src/app/services/conamype.service';
 import { AppConfig } from '../../services/app-config.service';
+import { ContactoEmpresaComponent } from './contacto-empresa/contacto-empresa.component';
+import { ContactoOrganizadorComponent } from './contacto-organizador/contacto-organizador.component';
+import { EventoComponent } from './evento/evento.component';
 
 @Component({
   selector: 'app-eventos',
@@ -36,7 +40,7 @@ import { AppConfig } from '../../services/app-config.service';
 export class EventosComponent implements OnInit {
   @Input() tipo: 'RUEDA' | 'ANFITEATRO';
   @Input() url: string;
-  constructor(private conamypeService: ConamypeService, private router: Router, public appConfig: AppConfig) { }
+  constructor(private conamypeService: ConamypeService, private router: Router, public appConfig: AppConfig, private dialog: MatDialog) { }
   animacion_estado = 'in';
   animacion_contenedor = 'altoMin';
   ngOnInit(): void {
@@ -56,8 +60,21 @@ export class EventosComponent implements OnInit {
     });
   }
   mostrarInformacion(evento: Evento) {
-    this.eventoSeleccionado = evento;
-    $("#infoEventoModal")['modal']();
+    /*this.eventoSeleccionado = evento;
+    $("#infoEventoModal")['modal']();*/
+    const dialog = this.dialog.open( EventoComponent, {
+      width: '650px',
+      data: { evento: evento, tipo: 'RUEDA' }
+    } );
+  }
+
+  abrirFormulario(tipo: string,data?: any) {
+    if (tipo == 'empresa') {
+      const dialog = this.dialog.open( ContactoEmpresaComponent, {
+        width: '650px',
+        data: data
+      } );
+    }
   }
 
   get titulo() {

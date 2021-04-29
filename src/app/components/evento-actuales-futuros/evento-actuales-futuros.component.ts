@@ -1,12 +1,11 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ConamypeService } from '../../services/conamype.service';
 
 @Component({
   selector: 'app-evento-actuales-futuros',
   templateUrl: './evento-actuales-futuros.component.html',
-  styles: [
-  ]
+  styles: [' :host { display:block } ', '.carousel-caption p  { font-size: 0.85rem !important }']
 })
 export class EventoActualesFuturosComponent implements OnInit {
 
@@ -15,9 +14,13 @@ export class EventoActualesFuturosComponent implements OnInit {
   ngOnInit(): void {
     this.conamypeService.eventosFeriasRuedaAnfiteatro().subscribe((data: any) => {
         this.eventos = data;
-    });
+    }, (err) => {}, () => {
+      setTimeout(function () {
+        $('#eventos')['carousel']('cycle');
+      }, 1500);
+    } );
   }
-
+  
   fechaTexto(evento)
   {
     var d1 = evento.Fecha_Inicio;
@@ -26,12 +29,11 @@ export class EventoActualesFuturosComponent implements OnInit {
     var fecha2 = new Date( d2 );
 
     if ( formatDate(d1, "ddMMyyyy", "es-ES") === formatDate(d2, "ddMMyyyy", "es-ES") ) {
-      return ` ${ fecha1.getDate() + 1 } ${ formatDate(d1, "MMMM", "es-ES").toUpperCase() } `;
+      return ` ${ fecha1.getDate() } ${ formatDate(d1, "MMMM", "es-ES").toLowerCase() } `;
   } else if ( formatDate(d1, "MMyyyy", "es-ES") === formatDate(d2, "MMyyyy", "es-ES") ) {
-    console.log( evento.Nombre ,formatDate(d1, "ddMMyyyy", "es-ES"),formatDate(d2, "ddMMyyyy", "es-ES")  )
-        return ` ${ fecha1.getDate() } AL ${ fecha2.getDate()+ 1 } ${ formatDate(d1, "MMMM", "es-ES").toUpperCase() } `;
+        return ` ${ fecha1.getDate() } al ${ fecha2.getDate() } ${ formatDate(d1, "MMMM", "es-ES").toLowerCase() } `;
     } else {
-      return ` ${ fecha1.getDate() + 1 } ${ formatDate(d1, "MMMM", "es-ES").toUpperCase() } AL  ${ fecha2.getDate() + 1 } ${ formatDate(d2, "MMMM", "es-ES").toUpperCase() }  `;
+      return ` ${ fecha1.getDate() } ${ formatDate(d1, "MMMM", "es-ES").toLowerCase() } al  ${ fecha2.getDate() } ${ formatDate(d2, "MMMM", "es-ES").toLowerCase() }  `;
     }
 
   }
@@ -39,3 +41,5 @@ export class EventoActualesFuturosComponent implements OnInit {
 
 
 }
+
+

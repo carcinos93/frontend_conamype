@@ -8,7 +8,10 @@
     "urlChat": {
         "facebook": "https://m.me/{fanpage}"
     },
-    "habilitarSonido": true,
+    "audio": {
+        "habilitarSonido": true,
+        "ruta": "assets/audios/Broken - Patrick Patrikios.mp3"
+    },
     "redes": {
         "facebook": "https://www.facebook.com/conamype.sv/",
         "twitter": "https://twitter.com/CONAMYPESV",
@@ -26,6 +29,7 @@
         "ruedaNegocios": "Rueda",
         "fachada": "Fachada"
     },
+    "unityVersion": "d1.0.19",
     "servicios": {
         "base": "/mail_ws/api/",
         "ruedaNegocios": "/mail_ws/api/unity/ruedaNegocios",
@@ -37,6 +41,10 @@
             "estand": "/mail_ws/api/estand",
             "centro_ferias_eventos": "/mail_ws/api/centroEventos"
         }
+    },
+    "transaccion": {
+        "inicio": 5,
+        "bienvenido": 3
     },
     "recaptchaKey": "6LdfFHAaAAAAAIvUfxf6viOCpYKVzfLBp0WhNi-_",
     "videoPlayer": [{

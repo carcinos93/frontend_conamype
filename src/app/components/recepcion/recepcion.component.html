@@ -9,7 +9,7 @@
             <div (click)="collapse('ferias', 'ferias-estado')" class="col-12 text-center bg-white-transparent" style="border-radius: 0 33px 0 0;">
                 <div class="img-scale-animation-5">
                     <!--<span class="w-100 icono-sort"> <i class="fa fa-caret-up fa-3x" id="ferias-estado" aria-hidden="true"></i> </span>--->
-                    <div class="icono-flecha arriba mb-1 mt-1 mx-auto" id="ferias-estado"></div>
+                    <div class="icono-flecha arriba mb-1 mt-3 mx-auto" id="ferias-estado"></div>
                     <p class="p-0 m-0 font-weight-bold h4">FERIAS</p>
                 </div>
 
@@ -28,11 +28,15 @@
             </div>
         </div>
     </div>
-    <div *ngIf="lsService.isAuthenticated()" class="bg-white-transparent col-3 col-xl-3 col-md-2 col-lg-3 col-sm-2" style="position: absolute;bottom: 0; right: 0;border-radius: 33px 0 0 0;">
+
+    <app-evento-actuales-futuros class="position-absolute" style="bottom: 0;right: 50%;width: 48%;transform: translate(50%, 0)">
+    </app-evento-actuales-futuros>
+    <div *ngIf="lsService.isAuthenticated() && ferias.length > 0" class="bg-white-transparent col-3 col-xl-3 col-md-2 col-lg-3 col-sm-2 position-absolute" style="bottom: 0; right: 0;border-radius: 33px 0 0 0;">
+
         <div class="row no-gutters m-0">
             <div (click)="collapse('ruedaAnfiteatro', 'ruedaAnfiteatro-estado')" class="col-12 text-center">
                 <div class="img-scale-animation-5">
-                    <div class="icono-flecha abajo mb-1 mt-1 mx-auto" id="ruedaAnfiteatro-estado"></div>
+                    <div class="icono-flecha abajo mb-1 mt-3 mx-auto" id="ruedaAnfiteatro-estado"></div>
                     <p class="p-0 m-0 font-weight-bold h4">NEGOCIOS</p>
 
                 </div>

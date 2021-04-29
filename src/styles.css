@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import "~@danielmoncada/angular-datetime-picker/assets/style/picker.min.css";
 @font-face {
     font-family: 'Lato';
     src: url('^assets/fonts/Lato-Black.ttf') format('truetype');
@@ -119,6 +120,7 @@ html {
     background-size: contain;
     width: 35px;
     height: 22px;
+    cursor: pointer;
 }
 
 .icono-flecha.abajo {
@@ -285,4 +287,34 @@ html {
 }
 
 
+/*** plugin de facebook */
+
+#fb-root .fb-customerchat iframe:not([style*="min-height: 0px"]) {
+    border: 5px outset #3d84c6;
+}
+
+.fb_dialog_content::before {
+    content: 'Chat';
+    position: fixed;
+    bottom: 89px;
+    left: 0;
+    display: inline-block;
+    right: 31px;
+    font-size: 26px;
+}
+
+
 /****/
+
+.timepicker-backdrop-overlay {
+    z-index: 2000 !important;
+}
+
+.timepicker-overlay {
+    z-index: 2001 !important;
+}
+
+.disabled {
+    pointer-events: none;
+    display: none;
+}

@@ -40,12 +40,19 @@ import { UrlVideoPipe } from './pipes/url-video.pipe';
 import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 import { CambioPasswordComponent } from './components/usuario/cambio-password/cambio-password.component';
 import { FacebookModule } from 'ngx-facebook';
+import { ConfirmarComponent } from './components/confirmar/confirmar.component';
+import { MaterialModule } from './material/material.module';
+import { ContactoEmpresaComponent } from './components/eventos/contacto-empresa/contacto-empresa.component';
+import { DatetimepickerComponent } from './components/controles/datetimepicker/datetimepicker.component';
+import { ContactoOrganizadorComponent } from './components/eventos/contacto-organizador/contacto-organizador.component';
+import { FormularioComponent } from './components/eventos/formulario/formulario.component';
+import { EventoComponent } from './components/eventos/evento/evento.component';
 const appInitializerFn = (appConfig: AppConfig) => {
   return () => {
     return appConfig.loadAppConfig();
   };
 };
-registerLocaleData(es);
+registerLocaleData(es, "es");
 
 @NgModule({
   declarations: [
@@ -76,7 +83,13 @@ registerLocaleData(es);
     LoadingComponent,
     EventoActualesFuturosComponent,
     UrlVideoPipe,
-    CambioPasswordComponent
+    CambioPasswordComponent,
+    ConfirmarComponent,
+    ContactoEmpresaComponent,
+    DatetimepickerComponent,
+    ContactoOrganizadorComponent,
+    FormularioComponent,
+    EventoComponent
   ],
   imports: [
     BrowserModule,
@@ -87,11 +100,12 @@ registerLocaleData(es);
     BrowserAnimationsModule,
     RecaptchaModule,
     RecaptchaFormsModule,
-    FacebookModule.forRoot()
+    FacebookModule.forRoot(),
+    MaterialModule
   ],
   providers: [ AppConfig,
     {
-       provide: LOCALE_ID, useValue: "es-*"
+       provide: LOCALE_ID, useValue: "es"
     },
   {
     provide: APP_INITIALIZER,

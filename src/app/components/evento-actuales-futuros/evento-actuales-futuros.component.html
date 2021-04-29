@@ -1,17 +1,25 @@
-<div id="eventos" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
+<div id="eventos" *ngIf="eventos.length > 0" class="carousel slide vertical m-0" data-ride="carousel" data-pause="hover">
+    <!--<ol class="carousel-indicators">
         <li *ngFor="let evento of eventos; let i = index" [class.active]="i == 0" data-target="#eventos" [attr.data-slide-to]="i"></li>
 
-    </ol>
+    </ol>-->
     <div class="carousel-inner">
-        <div class="carousel-item" [class.active]="i == 0" *ngFor="let evento of eventos; let i = index">
-            <div class="container">
-                <div class="carousel-caption m-0 p-0">
-                    <h5> {{ evento.EventoActual == "no" ? "Próximamente" : "" }} {{ evento.Nombre }} - {{ fechaTexto( evento ) }} </h5>
-                    <p> <small> {{ evento.TipoEvento }} </small> </p>
+        <div class="carousel-item" style="border-radius: 25px 25px 0 0; height: 4.25rem;" [class.active]="i == 0" *ngFor="let evento of eventos; let i = index">
 
-                </div>
+            <div class="carousel-caption p-0 m-0 font-weight-bold" style="bottom: 0.5rem;">
+
+                <p class="m-0"> {{ evento.EventoActual == "no" ? "Próximamente" : "" }} </p>
+
+                <p class="m-0">
+                    <span>  {{ evento.Nombre | lowercase }} </span>
+                </p>
+                <p class="m-0">
+                    <span style="text-transform: capitalize;"> {{ fechaTexto( evento ) }} </span>
+                </p>
+                <!-- <p> <small> {{ evento.TipoEvento }} </small> </p>-->
+
             </div>
+
 
         </div>
     </div>

@@ -15,6 +15,7 @@ export interface Evento {
     Vinculo_Inscripcion: string;
     Vinculo_Video: string;
     Ponentes: string;
+    Perfil?: string,
     Usuario_Creacion: string;
     Fecha_Creacion: string;
     Usuario_Mantenimiento?: any;

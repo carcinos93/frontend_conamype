@@ -1,0 +1,63 @@
+<h2 mat-dialog-title>Contactar empresa</h2>
+<mat-dialog-content>
+    <mat-horizontal-stepper [linear]="true" #stepper>
+        <mat-step [completed]="datosEmpresa">
+            <ng-template matStepLabel>Seleccione una empresa</ng-template>
+
+            <table class="table table-bordered" border="1">
+                <thead>
+                    <tr>
+                        <th>
+
+                        </th>
+                        <th>
+                            Empresa
+                        </th>
+                        <th>
+                            Perfil
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of empresas" class="cursor-pointer">
+                        <td>
+                            <button (click)="seleccionarEmpresa(item)" class="btn btn-primary">Seleccionar</button>
+                        </td>
+                        <td>
+                            {{ item.Nombre_Participante }}
+                        </td>
+                        <td>
+                            <span [title]="item.Perfil">
+                                {{ item.Perfil|slice:0:15 }} ...
+                            </span>
+
+                        </td>
+                        <td>
+                            <div class="rounded-circle overflow-hidden mx-auto" style="width:40px; height:40px">
+                                <img class="h-100 w-auto" style="transform: translateX(-50%); margin-left: 50%;" [src]="item.Logo_Participante" alt="">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <mat-spinner class="mx-auto" *ngIf="cargando"></mat-spinner>
+        </mat-step>
+        <mat-step label="Información">
+            <!-- <form [formGroup]="secondFormGroup">-->
+            <app-formulario (afterEnviar)="afterEnviar($event)" [data]="datosEmpresa">
+
+            </app-formulario>
+
+            <div>
+                <button class="btn btn-secondary" mat-button matStepperPrevious> Paso atrás</button>
+            </div>
+            <!--</form>-->
+        </mat-step>
+
+
+    </mat-horizontal-stepper>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button class="btn-danger btn" mat-button mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>
