@@ -46,11 +46,32 @@ export class CanvasComponent implements OnInit, AfterViewInit, OnDestroy  {
 
   }
   ngAfterViewInit(): void {
+    let width = $(document).width();
+    let porcent = 90;
+
+    if (width <= 1440)
+    {
+     porcent = 88;
+    }
+
+    if (width <= 1366) {
+      porcent = 88
+    }
+
+    if (width <= 1024) {
+      porcent = 85
+    }
+   
+    let total = width * (porcent / 100.0);
     if (this.autoWidth) {
       this.myCanvas.nativeElement.className = this.myCanvas.nativeElement.className + " canvas-unity";
     } else {
       this.myCanvas.nativeElement.className = this.myCanvas.nativeElement.className + " w-100";
     }
+    
+    $(".canvas-unity").css({
+      "width" : `${total}px` 
+    });
 
     /*$(".canvas-unity").height(this.ratio * Number($(".canvas-unity").width()));*/
      this.cargarUnity(this.unityObjeto);

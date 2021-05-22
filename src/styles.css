@@ -253,7 +253,8 @@ html {
     }
 }
 
-.canvas-unity {
+
+/*.canvas-unity {
     width: 90%;
     height: auto;
     margin-bottom: 10px;
@@ -275,7 +276,7 @@ html {
     .canvas-unity {
         width: 85%;
     }
-}
+}*/
 
 .col-2_4 {
     flex: 0 0 20%;
@@ -297,7 +298,6 @@ html {
     content: 'Chat';
     position: fixed;
     bottom: 89px;
-    left: 0;
     display: inline-block;
     right: 31px;
     font-size: 26px;
